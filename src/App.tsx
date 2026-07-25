@@ -429,38 +429,38 @@ export default function App() {
         
         {/* Navigation Breadcrumb / Tab Switcher */}
         <div className="mt-4 flex flex-col sm:flex-row items-center justify-between bg-white p-2.5 rounded-2xl border border-sky-100 shadow-xs text-xs font-bold gap-2">
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
             <button
               onClick={() => setCurrentView('dashboard')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-all ${
+              className={`flex items-center justify-center gap-2 flex-1 sm:flex-none px-4 py-2 rounded-xl transition-all ${
                 currentView === 'dashboard'
                   ? 'bg-sky-900 text-white shadow-xs'
                   : 'text-slate-600 hover:bg-sky-50'
               }`}
             >
-              <LayoutDashboard className="w-4 h-4" />
+              <LayoutDashboard className="w-4 h-4 shrink-0" />
               <span>Dashboard Siswa</span>
             </button>
             <button
               onClick={() => setCurrentView('knowledge')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-all ${
+              className={`flex items-center justify-center gap-2 flex-1 sm:flex-none px-4 py-2 rounded-xl transition-all ${
                 currentView === 'knowledge'
                   ? 'bg-sky-900 text-white shadow-xs'
                   : 'text-slate-600 hover:bg-sky-50'
               }`}
             >
-              <Brain className="w-4 h-4" />
+              <Brain className="w-4 h-4 shrink-0" />
               <span>Knowledge Check</span>
             </button>
             <button
               onClick={() => setCurrentView('games')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-all ${
+              className={`flex items-center justify-center gap-2 flex-1 sm:flex-none px-4 py-2 rounded-xl transition-all ${
                 currentView === 'games'
                   ? 'bg-sky-900 text-white shadow-xs'
                   : 'text-slate-600 hover:bg-sky-50'
               }`}
             >
-              <Gamepad2 className="w-4 h-4" />
+              <Gamepad2 className="w-4 h-4 shrink-0" />
               <span>Anti Bullying Games</span>
             </button>
           </div>
