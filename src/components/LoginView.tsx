@@ -76,12 +76,12 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
         userToLogin = found || {
           id: `stu-${Date.now()}`,
           role: 'student',
-          name: 'Budi Santoso',
+          name: 'Aqeela Nahdasasfia',
           nik: nik.trim(),
           nisn: dynamicId.trim(),
           className: '8B',
           schoolName: 'SMP Nusantara Jakarta',
-          avatarUrl: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=200&q=80',
+          avatarUrl: '',
           streakDays: 5
         };
       } else if (selectedRole === 'teacher') {
@@ -104,7 +104,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
           name: 'Bapak Hendra Santoso',
           nik: nik.trim(),
           childNisn: dynamicId.trim(),
-          childName: 'Budi Santoso (8B)',
+          childName: 'Aqeela Nahdasasfia (8B)',
           schoolName: 'SMP Nusantara Jakarta',
           avatarUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80'
         };
@@ -363,7 +363,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
                       className="w-full p-2.5 rounded-xl border border-slate-200 hover:border-sky-400 bg-slate-50 hover:bg-sky-50 transition-all flex items-center justify-between text-left"
                     >
                       <div>
-                        <h4 className="text-xs font-bold text-slate-900">• Siswa: Budi Santoso (8B)</h4>
+                        <h4 className="text-xs font-bold text-slate-900">• Siswa: Aqeela Nahdasasfia (8B)</h4>
                         <p className="text-[10px] text-slate-500">NIK: 3171012304080001 • NISN: 0082341234</p>
                       </div>
                       <span className="text-xs font-bold px-2 py-0.5 rounded bg-sky-100 text-sky-800">Siswa</span>
@@ -386,7 +386,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
                     >
                       <div>
                         <h4 className="text-xs font-bold text-slate-900">• Orang Tua: Bapak Hendra Santoso</h4>
-                        <p className="text-[10px] text-slate-500">Orang Tua Siswa Budi Santoso (8B)</p>
+                        <p className="text-[10px] text-slate-500">Orang Tua Siswa Aqeela Nahdasasfia (8B)</p>
                       </div>
                       <span className="text-xs font-bold px-2 py-0.5 rounded bg-cyan-100 text-cyan-900">Orang Tua</span>
                     </button>

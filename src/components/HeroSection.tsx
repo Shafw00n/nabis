@@ -31,7 +31,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             <span>Zona Bebas Bullying • SMP Negeri 1 NABIS</span>
           </div>
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white leading-tight">
-            Selamat Datang, <span className="text-cyan-300">Budi!</span>
+            Selamat Datang, <span className="text-cyan-300">Aqeela!</span>
           </h1>
           <p className="mt-2 text-sky-100 text-sm sm:text-base leading-relaxed">
             Kamu berhak belajar dan berkembang dalam lingkungan yang aman, dihargai, dan penuh kedamaian. Mari saling jaga & rangkul sesama teman.

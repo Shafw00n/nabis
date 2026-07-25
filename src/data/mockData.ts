@@ -4,12 +4,12 @@ export const DEMO_STUDENTS: UserStudent[] = [
   {
     id: 'stu-1',
     role: 'student',
-    name: 'Budi Santoso',
+    name: 'Aqeela Nahdasasfia',
     nik: '3171012304080001',
     nisn: '0082341234',
     className: '8B',
     schoolName: 'SMP Nusantara Jakarta',
-    avatarUrl: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=200&q=80',
+    avatarUrl: '',
     streakDays: 5
   },
   {
@@ -63,10 +63,10 @@ export const DEMO_PARENTS: UserParent[] = [
   {
     id: 'prn-1',
     role: 'parent',
-    name: 'Bapak Hendra Santoso (Orang Tua Budi)',
+    name: 'Bapak Hendra Santoso (Orang Tua Aqeela)',
     nik: '3171011505750001',
     childNisn: '0082341234',
-    childName: 'Budi Santoso (8B)',
+    childName: 'Aqeela Nahdasasfia (8B)',
     schoolName: 'SMP Nusantara Jakarta',
     avatarUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80'
   }
@@ -203,7 +203,7 @@ export const DEMO_MOOD_RAPOTS: MoodRapot[] = [
   {
     id: 'rpt-1',
     studentId: 'stu-1',
-    studentName: 'Budi Santoso',
+    studentName: 'Aqeela Nahdasasfia',
     className: '8B',
     period: 'Juli 2026',
     level: '1',
@@ -212,7 +212,7 @@ export const DEMO_MOOD_RAPOTS: MoodRapot[] = [
     totalCheckIns: 18,
     dominantMood: 'Baik & Sangat Baik',
     triggerFactors: ['Tugas Sekolah Terkendali', 'Dukungan Teman', 'Kegiatan Olahraga'],
-    aiSummary: 'Budi menunjukkan tren kestabilan emosi yang sangat memuaskan sepanjang bulan Juli. Aktivitas check-in harian berjalan konsisten. Terdeteksi lonjakan motivasi tinggi usai mengikuti kegiatan ekstrakurikuler.',
+    aiSummary: 'Aqeela menunjukkan tren kestabilan emosi yang sangat memuaskan sepanjang bulan Juli. Aktivitas check-in harian berjalan konsisten. Terdeteksi lonjakan motivasi tinggi usai mengikuti kegiatan ekstrakurikuler.',
     recommendations: [
       'Pertahankan kebiasaan Daily Mood Check harian.',
       'Jadilah pahlawan Upstander di kelas untuk merangkul teman yang menyendiri.',

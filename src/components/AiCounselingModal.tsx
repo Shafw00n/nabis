@@ -32,7 +32,7 @@ export const AiCounselingModal: React.FC<AiCounselingModalProps> = ({
   isOpen,
   onClose,
   onOpenLaporModal,
-  studentName = 'Budi Santoso'
+  studentName = 'Aqeela Nahdasasfia'
 }) => {
   const [activeTab, setActiveTab] = useState<'chat' | 'contacts' | 'prescriptions'>('chat');
   
