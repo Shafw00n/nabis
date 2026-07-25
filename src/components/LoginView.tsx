@@ -168,22 +168,23 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col justify-between relative overflow-hidden font-sans">
+    <div className="min-h-screen bg-gradient-to-br from-sky-950 via-sky-900 to-cyan-950 text-white flex flex-col justify-between relative overflow-hidden font-sans">
       {/* Background Decorative Accents */}
-      <div className="absolute -top-32 -right-32 w-96 h-96 bg-sky-200/50 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/2 -left-32 w-96 h-96 bg-cyan-200/40 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -top-32 -right-32 w-[32rem] h-[32rem] bg-sky-500/30 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/2 -left-32 w-[32rem] h-[32rem] bg-cyan-400/25 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute -bottom-32 right-1/3 w-[28rem] h-[28rem] bg-blue-600/30 rounded-full blur-[120px] pointer-events-none" />
 
       {/* Top Bar Navigation */}
       <header className="relative z-10 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
         <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 rounded-xl bg-sky-950 flex items-center justify-center text-white shadow-md ring-2 ring-sky-200">
+          <div className="w-10 h-10 rounded-xl bg-sky-900/90 flex items-center justify-center text-white shadow-md ring-2 ring-cyan-300/40 border border-sky-400/50">
             <NabisLogoIcon className="w-6 h-6" />
           </div>
           <div>
-            <span className="text-xl font-black text-sky-950 tracking-tight">
+            <span className="text-xl font-black text-white tracking-tight">
               NABIS
             </span>
-            <span className="hidden sm:inline-block ml-2 text-xs font-bold px-2.5 py-0.5 rounded-full bg-sky-100 text-sky-900 border border-sky-200">
+            <span className="hidden sm:inline-block ml-2 text-xs font-bold px-2.5 py-0.5 rounded-full bg-sky-500/20 text-cyan-200 border border-sky-400/30 backdrop-blur-md">
               Platform Anti-Bullying Sekolah
             </span>
           </div>
@@ -195,34 +196,34 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
         
         {/* Left Column: Branding & Portal Descriptions */}
         <div className="lg:col-span-6 space-y-7">
-          <div className="inline-flex items-center space-x-2.5 px-4 py-2 rounded-full bg-sky-100/90 border border-sky-200 text-sky-900 text-xs sm:text-sm font-bold">
-            <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 text-sky-700" />
+          <div className="inline-flex items-center space-x-2.5 px-4 py-2 rounded-full bg-sky-500/20 border border-cyan-400/40 text-cyan-200 text-xs sm:text-sm font-bold backdrop-blur-md">
+            <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-300" />
             <span>National Anti-Bullying Intelligence System</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-tight">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight">
             NABIS Anti-Bullying <br />
-            <span className="text-sky-900">
+            <span className="text-cyan-300">
               {getRoleLabel(selectedRole)}
             </span>
           </h1>
 
-          <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
+          <p className="text-sky-100/90 text-base sm:text-lg leading-relaxed">
             Platform sinergi perlindungan remaja, penanganan dini perundungan, deteksi dini Mood Rapot, serta sesi intervensi konseling aman dengan pemantauan transparan.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-3">
-            <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-1.5 hover:border-sky-300 transition-colors">
-              <h4 className="text-sm font-extrabold text-sky-900">• Preventif</h4>
-              <p className="text-xs text-slate-600 leading-normal">Daily Mood Check, Games, Knowledge Check &amp; Reward-Punishment.</p>
+            <div className="p-4 rounded-2xl bg-sky-950/70 backdrop-blur-md border border-sky-700/60 shadow-lg space-y-1.5 hover:border-cyan-400/80 transition-colors">
+              <h4 className="text-sm font-extrabold text-cyan-300">• Preventif</h4>
+              <p className="text-xs text-sky-100 leading-normal">Daily Mood Check, Games, Knowledge Check &amp; Reward-Punishment.</p>
             </div>
-            <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-1.5 hover:border-sky-300 transition-colors">
-              <h4 className="text-sm font-extrabold text-sky-900">• Detect</h4>
-              <p className="text-xs text-slate-600 leading-normal">Rapot Siswa, Analitik Emosional, &amp; Peringatan Dini Konselor.</p>
+            <div className="p-4 rounded-2xl bg-sky-950/70 backdrop-blur-md border border-sky-700/60 shadow-lg space-y-1.5 hover:border-cyan-400/80 transition-colors">
+              <h4 className="text-sm font-extrabold text-cyan-300">• Detect</h4>
+              <p className="text-xs text-sky-100 leading-normal">Rapot Siswa, Analitik Emosional, &amp; Peringatan Dini Konselor.</p>
             </div>
-            <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-1.5 hover:border-sky-300 transition-colors">
-              <h4 className="text-sm font-extrabold text-sky-900">• Kuratif</h4>
-              <p className="text-xs text-slate-600 leading-normal">Lapor Aku, Respond Triage, &amp; Recover Sesi Konseling.</p>
+            <div className="p-4 rounded-2xl bg-sky-950/70 backdrop-blur-md border border-sky-700/60 shadow-lg space-y-1.5 hover:border-cyan-400/80 transition-colors">
+              <h4 className="text-sm font-extrabold text-cyan-300">• Kuratif</h4>
+              <p className="text-xs text-sky-100 leading-normal">Lapor Aku, Respond Triage, &amp; Recover Sesi Konseling.</p>
             </div>
           </div>
         </div>
@@ -423,7 +424,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
       </main>
 
       {/* Footer */}
-      <footer className="relative z-10 py-3 text-center text-xs text-slate-500 border-t border-slate-200 bg-white">
+      <footer className="relative z-10 py-3.5 text-center text-xs text-sky-200 border-t border-sky-800/80 bg-sky-950/80 backdrop-blur-md">
         <p>NABIS — National Anti-Bullying Intelligence System</p>
       </footer>
     </div>
