@@ -557,7 +557,7 @@ export default function App() {
       <footer className="bg-white border-t border-sky-100 py-8 mt-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-500 space-y-2">
           <div className="flex items-center justify-center gap-2 font-bold text-sky-900 text-sm">
-            <NabisLogoIcon className="w-4 h-4" />
+            <NabisLogoIcon className="w-5 h-5" />
             <span>NABIS — National Anti-Bullying Intelligence System</span>
           </div>
           <p className="text-slate-600">

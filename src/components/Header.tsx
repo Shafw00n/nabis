@@ -29,28 +29,26 @@ export const Header: React.FC<HeaderProps> = ({
   const isTeacher = currentUser?.role === 'teacher';
 
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-sky-100 shadow-xs transition-all">
+    <header className="sticky top-0 z-40 bg-sky-950/95 backdrop-blur-md border-b border-sky-800 shadow-md text-white transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-4">
         
         {/* Logo & Brand */}
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-sky-950 flex items-center justify-center text-white shadow-xs ring-2 ring-sky-200">
-            <NabisLogoIcon className="w-7 h-7 sm:w-8 sm:h-8" />
-          </div>
+          <NabisLogoIcon className="w-9 h-9 sm:w-11 sm:h-11 shrink-0" />
           <div>
             <div className="flex items-center gap-2">
-              <span className="font-black text-xl sm:text-2xl tracking-tight text-sky-950 font-sans">
+              <span className="font-black text-xl sm:text-2xl tracking-tight text-white font-sans">
                 NABIS
               </span>
               <span className={`hidden sm:inline-block px-2.5 py-0.5 text-xs font-bold rounded-full border ${
                 isTeacher 
-                  ? 'bg-amber-100 text-amber-900 border-amber-300' 
-                  : 'bg-sky-100 text-sky-900 border-sky-200'
+                  ? 'bg-amber-500/20 text-amber-300 border-amber-500/40' 
+                  : 'bg-sky-500/20 text-cyan-200 border-sky-400/30'
               }`}>
                 {isTeacher ? 'Portal Guru BK' : 'Siswa Active'}
               </span>
             </div>
-            <p className="text-[11px] sm:text-xs text-slate-500 font-medium">
+            <p className="text-[11px] sm:text-xs text-sky-200 font-medium">
               National Anti-Bullying Intelligence System
             </p>
           </div>
@@ -65,16 +63,16 @@ export const Header: React.FC<HeaderProps> = ({
               onClick={onOpenReminderModal}
               className={`hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold border transition-all ${
                 reminderSettings.enabled
-                  ? 'bg-sky-50 text-sky-800 border-sky-200 hover:bg-sky-100'
-                  : 'bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200'
+                  ? 'bg-sky-900/90 text-sky-100 border-sky-700 hover:bg-sky-800'
+                  : 'bg-sky-900/40 text-sky-300 border-sky-800 hover:bg-sky-900/60'
               }`}
               title="Pengaturan Jadwal Check-in Harian"
             >
-              <Clock className={`w-3.5 h-3.5 ${reminderSettings.enabled ? 'text-sky-700 animate-pulse' : 'text-slate-400'}`} />
+              <Clock className={`w-3.5 h-3.5 ${reminderSettings.enabled ? 'text-cyan-300 animate-pulse' : 'text-slate-400'}`} />
               <span>
                 {reminderSettings.enabled ? `Check-in: ${reminderSettings.time} WIB` : 'Pengingat Matang'}
               </span>
-              <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+              <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
             </button>
           )}
 
@@ -82,7 +80,7 @@ export const Header: React.FC<HeaderProps> = ({
           <div className="relative">
             <button
               onClick={() => setShowNotifDropdown(!showNotifDropdown)}
-              className="relative p-2.5 rounded-xl text-sky-900 bg-slate-50 hover:bg-sky-50 border border-slate-200 transition-all focus:outline-none focus:ring-2 focus:ring-sky-600"
+              className="relative p-2.5 rounded-xl text-sky-100 bg-sky-900/90 hover:bg-sky-800 border border-sky-700 transition-all focus:outline-none focus:ring-2 focus:ring-sky-500"
               aria-label="Notifikasi"
             >
               <Bell className="w-5 h-5" />
@@ -164,24 +162,24 @@ export const Header: React.FC<HeaderProps> = ({
           <div className="relative">
             <button
               onClick={() => setShowProfileMenu(!showProfileMenu)}
-              className="flex items-center gap-2 pl-2 border-l border-slate-200 hover:opacity-90 transition-opacity focus:outline-none"
+              className="flex items-center gap-2 pl-2 border-l border-sky-800 hover:opacity-90 transition-opacity focus:outline-none"
             >
               {currentUser?.avatarUrl ? (
                 <img
                   src={currentUser.avatarUrl}
                   alt={currentUser.name}
-                  className="w-9 h-9 rounded-full object-cover border-2 border-sky-300"
+                  className="w-9 h-9 rounded-full object-cover border-2 border-cyan-400"
                 />
               ) : (
-                <div className="w-9 h-9 rounded-full bg-sky-100 border-2 border-sky-300 text-sky-900 flex items-center justify-center font-bold text-sm">
+                <div className="w-9 h-9 rounded-full bg-sky-900 border-2 border-cyan-400 text-cyan-200 flex items-center justify-center font-bold text-sm">
                   <User className="w-4 h-4" />
                 </div>
               )}
               <div className="hidden sm:block text-left">
-                <p className="text-xs font-bold text-slate-900 leading-none">
+                <p className="text-xs font-bold text-white leading-none">
                   {currentUser?.name || 'Pengguna'}
                 </p>
-                <p className="text-[10px] text-slate-500 leading-tight mt-0.5">
+                <p className="text-[10px] text-sky-200 leading-tight mt-0.5">
                   {isTeacher 
                     ? `NIP. ${(currentUser as any)?.nip || '198503122010012004'}`
                     : `Kelas ${(currentUser as any)?.className || '8B'} • NISN ${(currentUser as any)?.nisn || '0082341234'}`

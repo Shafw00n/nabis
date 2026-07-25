@@ -175,18 +175,18 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
       <div className="absolute -bottom-32 right-1/3 w-[28rem] h-[28rem] bg-blue-600/30 rounded-full blur-[120px] pointer-events-none" />
 
       {/* Top Bar Navigation */}
-      <header className="relative z-10 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-        <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 rounded-xl bg-sky-900/90 flex items-center justify-center text-white shadow-md ring-2 ring-cyan-300/40 border border-sky-400/50">
-            <NabisLogoIcon className="w-6 h-6" />
-          </div>
-          <div>
-            <span className="text-xl font-black text-white tracking-tight">
-              NABIS
-            </span>
-            <span className="hidden sm:inline-block ml-2 text-xs font-bold px-2.5 py-0.5 rounded-full bg-sky-500/20 text-cyan-200 border border-sky-400/30 backdrop-blur-md">
-              Platform Anti-Bullying Sekolah
-            </span>
+      <header className="relative z-10 w-full bg-sky-950/80 backdrop-blur-md border-b border-sky-800/80">
+        <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-between">
+          <div className="flex items-center space-x-1">
+            <NabisLogoIcon className="w-10 h-10 sm:w-11 sm:h-11 shrink-0" />
+            <div>
+              <span className="text-lg font-black text-white tracking-tight">
+                NABIS
+              </span>
+              <span className="hidden sm:inline-block ml-2 text-xs font-bold px-2.5 py-0.5 rounded-full bg-sky-500/20 text-cyan-200 border border-sky-400/30 backdrop-blur-md">
+                Platform Anti-Bullying Sekolah
+              </span>
+            </div>
           </div>
         </div>
       </header>
@@ -229,22 +229,24 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
         </div>
 
         {/* Right Column: Portal Login Box */}
-        <div className="lg:col-span-6 w-full max-w-lg mx-auto">
-          <div className="bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden">
+        <div className="lg:col-span-6 w-full max-w-md mx-auto">
+          <div className="rounded-3xl shadow-2xl overflow-hidden text-slate-900 bg-sky-950">
             
             {/* Header Title */}
-            <div className="bg-sky-950 px-6 py-5 text-white text-center">
-              <h3 className="font-extrabold text-lg sm:text-xl tracking-wide flex items-center justify-center gap-2.5">
+            <div className="bg-sky-950 px-4 py-3 text-white text-center rounded-t-3xl">
+              <h3 className="font-extrabold text-base sm:text-lg tracking-wide flex items-center justify-center gap-2">
                 Masuk ke NABIS
               </h3>
             </div>
 
-            {/* Form Mode Selector */}
-            <div className="p-2.5 bg-slate-100 border-b border-slate-200 flex justify-center space-x-2 text-xs sm:text-sm">
+            {/* Main Form Body Container */}
+            <div className="bg-white">
+              {/* Form Mode Selector */}
+              <div className="p-1.5 bg-slate-100 border-b border-slate-200 flex justify-center space-x-1.5 text-xs sm:text-sm">
               <button
                 onClick={() => setLoginMode('form')}
                 className={`px-4 py-2 rounded-xl font-bold transition-colors ${
-                  loginMode === 'form' ? 'bg-white text-sky-900 shadow-xs border border-slate-200' : 'text-slate-600 hover:text-slate-900'
+                  loginMode === 'form' ? 'bg-white text-sky-900 shadow-xs' : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
                 Formulir Login 3-Data
@@ -252,14 +254,14 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
               <button
                 onClick={() => setLoginMode('quick')}
                 className={`px-4 py-2 rounded-xl font-bold transition-colors ${
-                  loginMode === 'quick' ? 'bg-white text-sky-900 shadow-xs border border-slate-200' : 'text-slate-600 hover:text-slate-900'
+                  loginMode === 'quick' ? 'bg-white text-sky-900 shadow-xs' : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
                 Pilih Akun Demo Cepat
               </button>
             </div>
 
-            <div className="p-6 sm:p-9">
+            <div className="p-4 sm:p-5">
               {errorMsg && (
                 <div className="mb-5 p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-800 text-xs sm:text-sm font-semibold">
                   {errorMsg}
@@ -268,7 +270,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
 
               {/* FORMULIR LOGIN 3 DATA SESUAI DOKUMEN CLIENT */}
               {loginMode === 'form' && (
-                <form onSubmit={handleSubmit} className="space-y-5">
+                <form onSubmit={handleSubmit} className="space-y-3">
                   
                   {/* DATA 1: NIK (Untuk Semua Peran) */}
                   <div>
@@ -282,33 +284,33 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
                       value={nik}
                       onChange={(e) => setNik(e.target.value)}
                       placeholder="Masukkan NIK 16 digit..."
-                      className="w-full px-3.5 py-3 rounded-xl border border-slate-300 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-sky-600 bg-slate-50"
+                      className="w-full px-3 py-2 rounded-xl border border-slate-300 text-sm font-bold text-sky-950 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-600 bg-slate-50"
                       required
                     />
                   </div>
 
                   {/* DATA 2: DROPDOWN PERAN */}
                   <div>
-                    <label className="block text-xs sm:text-sm font-bold text-slate-800 mb-1.5 flex items-center gap-2">
+                    <label className="block text-xs sm:text-sm font-bold text-slate-800 mb-1 flex items-center gap-2">
                       <User className="w-4 h-4 text-sky-800" />
                       <span>Data 2: Dropdown Peran Pengguna</span>
                     </label>
                     <select
                       value={selectedRole}
                       onChange={(e) => handleRoleChange(e.target.value as UserRole)}
-                      className="w-full px-3.5 py-3 rounded-xl border border-slate-300 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-sky-600 bg-white text-sky-950"
+                      className="w-full px-3 py-2 rounded-xl border border-slate-300 text-sm font-bold text-sky-950 focus:outline-none focus:ring-2 focus:ring-sky-600 bg-white"
                     >
-                      <option value="student">Siswa (Fitur Preventif &amp; Kuratif)</option>
-                      <option value="teacher">Guru BK (Fitur Detect, Respond &amp; Analitik)</option>
-                      <option value="parent">Orang Tua (Monitoring Rapot &amp; Akses Kuratif)</option>
-                      <option value="tp2k">TP2K - Tim Pencegahan Kekerasan Sekolah</option>
-                      <option value="government">Pemerintah / Dinas Pendidikan</option>
+                      <option value="student" className="text-slate-900">Siswa (Fitur Preventif &amp; Kuratif)</option>
+                      <option value="teacher" className="text-slate-900">Guru BK (Fitur Detect, Respond &amp; Analitik)</option>
+                      <option value="parent" className="text-slate-900">Orang Tua (Monitoring Rapot &amp; Akses Kuratif)</option>
+                      <option value="tp2k" className="text-slate-900">TP2K - Tim Pencegahan Kekerasan Sekolah</option>
+                      <option value="government" className="text-slate-900">Pemerintah / Dinas Pendidikan</option>
                     </select>
                   </div>
 
                   {/* DATA 3: DINAMIS SESUAI PERAN */}
                   <div>
-                    <label className="block text-xs sm:text-sm font-bold text-slate-800 mb-1.5 flex items-center gap-2">
+                    <label className="block text-xs sm:text-sm font-bold text-slate-800 mb-1 flex items-center gap-2">
                       <FileText className="w-4 h-4 text-sky-800" />
                       <span>{getDynamicLabel()}</span>
                     </label>
@@ -317,14 +319,14 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
                       value={dynamicId}
                       onChange={(e) => setDynamicId(e.target.value)}
                       placeholder={`Masukkan ${getDynamicLabel()}...`}
-                      className="w-full px-3.5 py-3 rounded-xl border border-slate-300 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-sky-600 bg-slate-50"
+                      className="w-full px-3 py-2 rounded-xl border border-slate-300 text-sm font-bold text-sky-950 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-600 bg-slate-50"
                       required
                     />
                   </div>
 
                   {/* KATA SANDI */}
                   <div>
-                    <label className="block text-xs sm:text-sm font-bold text-slate-800 mb-1.5 flex items-center gap-2">
+                    <label className="block text-xs sm:text-sm font-bold text-slate-800 mb-1 flex items-center gap-2">
                       <Lock className="w-4 h-4 text-sky-800" />
                       <span>Kata Sandi Akses</span>
                     </label>
@@ -333,14 +335,14 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="••••••••"
-                      className="w-full px-3.5 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-sky-600"
+                      className="w-full px-3 py-2 rounded-xl border border-slate-300 text-sm font-bold text-sky-950 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-600 bg-slate-50"
                     />
                   </div>
 
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-3.5 rounded-xl bg-sky-900 hover:bg-sky-800 text-white font-bold text-sm sm:text-base shadow-md hover:shadow-lg transition-all flex items-center justify-center space-x-2 mt-3"
+                    className="w-full py-2.5 rounded-xl bg-sky-900 hover:bg-sky-800 text-white font-bold text-sm sm:text-base shadow-md hover:shadow-lg transition-all flex items-center justify-center space-x-2 mt-2"
                   >
                     <span>{isSubmitting ? 'Memverifikasi...' : `Masuk Sebagai ${getRoleLabel(selectedRole)}`}</span>
                     <ArrowRight className="w-5 h-5" />
@@ -416,10 +418,11 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
 
             </div>
 
-            <div className="bg-slate-50 p-3 border-t border-slate-200 text-center text-[11px] text-slate-500 font-medium">
+            <div className="bg-slate-50 p-2 border-t border-slate-200 text-center text-[10px] text-slate-500 font-medium">
               Sistem Terenkripsi NABIS • Hak Cipta © 2026 SMP Nusantara
             </div>
           </div>
+        </div>
         </div>
       </main>
 
