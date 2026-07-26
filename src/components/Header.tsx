@@ -127,7 +127,7 @@ export const Header: React.FC<HeaderProps> = ({
           )}
 
           {/* Notifications Trigger */}
-          <div className="relative">
+          <div className="relative shrink-0">
             <button
               onClick={() => setShowNotifDropdown(!showNotifDropdown)}
               className="relative p-3 rounded-xl text-sky-900 bg-slate-50 hover:bg-sky-50 border border-slate-200 transition-all focus:outline-none focus:ring-2 focus:ring-sky-600 min-w-[44px] min-h-[44px] flex items-center justify-center"
@@ -143,7 +143,7 @@ export const Header: React.FC<HeaderProps> = ({
 
             {/* Notification Dropdown */}
             {showNotifDropdown && (
-              <div className="absolute top-full left-2 right-2 sm:left-auto sm:right-0 mt-2 w-auto sm:w-96 max-w-[calc(100vw-32px)] sm:max-w-sm bg-white rounded-2xl shadow-xl border border-slate-200 py-3 z-50 animate-in fade-in zoom-in-95 duration-150 overflow-hidden">
+              <div className="absolute top-full right-0 mt-2 w-[min(360px,calc(100vw-32px))] sm:w-96 bg-white rounded-2xl shadow-xl border border-slate-200 py-3 z-50 animate-in fade-in zoom-in-95 duration-150 overflow-hidden">
                 <div className="px-4 pb-2 border-b border-slate-100 flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <Bell className="w-4 h-4 text-sky-800" />
@@ -209,7 +209,7 @@ export const Header: React.FC<HeaderProps> = ({
           )}
 
           {/* Profile Avatar & Menu */}
-          <div className="relative">
+          <div className="relative shrink-0">
             <button
               onClick={() => setShowProfileMenu(!showProfileMenu)}
               className="flex items-center gap-2 pl-2 border-l border-slate-200 hover:opacity-90 transition-opacity focus:outline-none"
