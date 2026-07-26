@@ -168,7 +168,7 @@ export default function App() {
         : user.role === 'government'
         ? `Berhasil masuk ke Portal Pemantauan Dinas Pendidikan.`
         : user.role === 'ambassador'
-        ? `Berhasil masuk ke Portal Routes Ambassador Anti-Perundungan.`
+        ? `Berhasil masuk ke Portal Roots Ambassador Anti-Perundungan.`
         : user.role === 'satgas'
         ? `Berhasil masuk ke Portal Satgas PPKSP Kabupaten.`
         : `Berhasil masuk ke Portal Siswa NABIS.`,
@@ -188,7 +188,7 @@ export default function App() {
       nik: '3171000000000001',
       nisn: '1000000000',
       className: 'Dampingan BK',
-      schoolName: 'SMA Milbos Bogor',
+      schoolName: 'MAS Milbos Bogor',
       streakDays: 1
     };
     setCurrentUser(guestUser);
@@ -225,8 +225,8 @@ export default function App() {
             onUpdateReportStatus={handleUpdateReportStatus}
           />
         </main>
-        <footer className="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500">
-          <p className="font-bold text-sky-900">• NABIS — Portal Konselor Guru BK • SMA Milbos Bogor</p>
+        <footer className="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500 pb-[max(1.5rem,env(safe-area-inset-bottom,1rem))]">
+          <p className="font-bold text-sky-900">• NABIS — Portal Konselor Guru BK • MAS Milbos Bogor</p>
         </footer>
       </div>
     );
@@ -273,13 +273,13 @@ export default function App() {
               <span className="text-xs font-bold text-sky-900">• Saluran Laporan Orang Tua</span>
               <button
                 onClick={() => setIsLaporModalOpen(true)}
-                className="w-full py-2 bg-red-700 hover:bg-red-800 text-white font-bold text-xs rounded-xl transition-colors mt-1"
+                className="w-full py-3 bg-red-700 hover:bg-red-800 text-white font-bold text-xs rounded-xl transition-colors mt-1 min-h-[44px]"
               >
                 Buat N-Report Untuk Anak
             </button>
             <button
               onClick={() => setCurrentView('tracking')}
-              className={`flex items-center justify-center gap-2 flex-1 sm:flex-none px-4 py-2 rounded-xl transition-all ${
+              className={`flex items-center justify-center gap-2 flex-1 sm:flex-none px-4 py-3 rounded-xl transition-all min-h-[44px] ${
                 currentView === 'tracking'
                   ? 'bg-sky-900 text-white shadow-xs'
                   : 'text-slate-600 hover:bg-sky-50'
@@ -291,7 +291,7 @@ export default function App() {
           </div>
           </div>
         </main>
-        <footer className="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500">
+        <footer className="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500 pb-[max(1.5rem,env(safe-area-inset-bottom,1rem))]">
           <p className="font-bold text-sky-900">• NABIS — Portal Komunikasi Orang Tua &amp; Sekolah</p>
         </footer>
         <LaporAkuModal
@@ -345,7 +345,7 @@ export default function App() {
             onUpdateReportStatus={handleUpdateReportStatus}
           />
         </main>
-        <footer className="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500">
+        <footer className="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500 pb-[max(1.5rem,env(safe-area-inset-bottom,1rem))]">
           <p className="font-bold text-sky-900">• NABIS — Portal Satgas TP2K Sekolah</p>
         </footer>
       </div>
@@ -368,7 +368,7 @@ export default function App() {
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-1 pb-16">
           <GovernmentPortalView />
         </main>
-        <footer className="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500">
+        <footer className="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500 pb-[max(1.5rem,env(safe-area-inset-bottom,1rem))]">
           <p className="font-bold text-sky-900">• NABIS — Portal Pengawasan Dinas Pendidikan &amp; Kebudayaan</p>
         </footer>
       </div>
@@ -381,7 +381,7 @@ export default function App() {
       
       {/* FLOATING LIVE NOTIFICATION TOAST */}
       {activeToast && (
-        <div className="fixed top-4 right-4 z-50 max-w-sm w-full bg-white rounded-2xl border-2 border-sky-400 shadow-2xl p-4 flex items-start gap-3 animate-in slide-in-from-top duration-300">
+        <div className="fixed top-[calc(env(safe-area-inset-top,0px)+1rem)] right-4 z-50 max-w-sm w-full bg-white rounded-2xl border-2 border-sky-400 shadow-2xl p-4 flex items-start gap-3 animate-in slide-in-from-top duration-300">
           <div className="p-2 rounded-xl bg-sky-900 text-white shadow-xs">
             <BellRing className="w-5 h-5 animate-bounce" />
           </div>
@@ -420,18 +420,19 @@ export default function App() {
           <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
             <button
               onClick={() => setCurrentView('dashboard')}
-              className={`flex items-center justify-center gap-2 flex-1 sm:flex-none px-4 py-2 rounded-xl transition-all ${
+              className={`flex items-center justify-center gap-2 flex-1 sm:flex-none px-4 py-2 rounded-xl transition-all min-h-[44px] ${
                 currentView === 'dashboard'
                   ? 'bg-sky-900 text-white shadow-xs'
                   : 'text-slate-600 hover:bg-sky-50'
               }`}
             >
               <LayoutDashboard className="w-4 h-4 shrink-0" />
-              <span>Dashboard Siswa</span>
+              <span className="hidden sm:inline">Dashboard Siswa</span>
+              <span className="sm:hidden">Dashboard</span>
             </button>
             <button
               onClick={() => setCurrentView('knowledge')}
-              className={`flex items-center justify-center gap-2 flex-1 sm:flex-none px-4 py-2 rounded-xl transition-all ${
+              className={`flex items-center justify-center gap-2 flex-1 sm:flex-none px-4 py-2 rounded-xl transition-all min-h-[44px] ${
                 currentView === 'knowledge'
                   ? 'bg-sky-900 text-white shadow-xs'
                   : 'text-slate-600 hover:bg-sky-50'
@@ -442,7 +443,7 @@ export default function App() {
             </button>
             <button
               onClick={() => setCurrentView('games')}
-              className={`flex items-center justify-center gap-2 flex-1 sm:flex-none px-4 py-2 rounded-xl transition-all ${
+              className={`flex items-center justify-center gap-2 flex-1 sm:flex-none px-4 py-2 rounded-xl transition-all min-h-[44px] ${
                 currentView === 'games'
                   ? 'bg-sky-900 text-white shadow-xs'
                   : 'text-slate-600 hover:bg-sky-50'
@@ -456,7 +457,7 @@ export default function App() {
           <div className="flex items-center gap-2">
             <button
               onClick={() => setIsAiCounselingOpen(true)}
-              className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-sky-100 hover:bg-sky-200 text-sky-950 font-bold text-xs transition-colors border border-sky-200"
+              className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-sky-100 hover:bg-sky-200 text-sky-950 font-bold text-xs transition-colors border border-sky-200 min-h-[44px]"
             >
               <Bot className="w-4 h-4 text-sky-800" />
               <span>AI Counseling</span>
@@ -464,7 +465,7 @@ export default function App() {
 
             <button
               onClick={() => setIsLaporModalOpen(true)}
-              className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-red-700 hover:bg-red-800 text-white font-bold text-xs transition-colors"
+              className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-red-700 hover:bg-red-800 text-white font-bold text-xs transition-colors min-h-[44px]"
             >
               <Shield className="w-3.5 h-3.5 text-red-200" />
               <span>'N-Report'</span>
@@ -546,7 +547,7 @@ export default function App() {
       />
 
       {/* FOOTER */}
-      <footer className="bg-white border-t border-sky-100 py-8 mt-auto">
+      <footer className="bg-white border-t border-sky-100 py-8 mt-auto pb-[max(2rem,env(safe-area-inset-bottom,1rem))]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-500 space-y-2">
           <div className="flex items-center justify-center gap-2 font-bold text-sky-900 text-sm">
             <NabisLogoIcon className="w-5 h-5" />

@@ -88,7 +88,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
           nik: nik.trim(),
           nisn: dynamicId.trim(),
           className: '8B',
-          schoolName: 'SMA Milbos Bogor',
+          schoolName: 'MAS Milbos Bogor',
           avatarUrl: '',
           streakDays: 5
         };
@@ -101,7 +101,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
           nik: nik.trim(),
           nip: dynamicId.trim(),
           roleTitle: 'Koordinator Bimbingan Konseling (BK)',
-          schoolName: 'SMA Milbos Bogor',
+          schoolName: 'MAS Milbos Bogor',
           avatarUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80'
         };
       } else if (selectedRole === 'parent') {
@@ -113,7 +113,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
           nik: nik.trim(),
           childNisn: dynamicId.trim(),
           childName: 'Aqeela Nahdasasfia (8B)',
-          schoolName: 'SMA Milbos Bogor',
+          schoolName: 'MAS Milbos Bogor',
           avatarUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80'
         };
       } else if (selectedRole === 'tp2k') {
@@ -125,7 +125,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
           nik: nik.trim(),
           institutionId: dynamicId.trim(),
           roleTitle: 'Ketua Tim TP2K Sekolah',
-          schoolName: 'SMA Milbos Bogor',
+          schoolName: 'MAS Milbos Bogor',
           avatarUrl: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80'
         };
       } else if (selectedRole === 'government') {
@@ -162,7 +162,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
           nisn: dynamicId.trim(),
           roleTitle: 'Duta Anti-Perundungan',
           className: '9B',
-          schoolName: 'SMA Milbos Bogor',
+          schoolName: 'MAS Milbos Bogor',
           avatarUrl: '',
           streakDays: 0
         };
@@ -188,7 +188,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
       case 'parent': return 'Orang Tua';
       case 'tp2k': return 'Tim TP2K';
       case 'government': return 'Pemerintah / Dinas';
-      case 'ambassador': return 'Routes Ambassador';
+      case 'ambassador': return 'Roots Ambassador';
       case 'satgas': return 'Satgas PPKSP Kabupaten';
     }
   };
@@ -200,7 +200,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
       case 'parent': return 'Data 3: ID Anak / NISN Siswa';
       case 'tp2k': return 'Data 3: ID Reg. TP2K Sekolah';
       case 'government': return 'Data 3: NIP / ID Instansi Dinas';
-      case 'ambassador': return 'Data 3: NISN Routes Ambassador';
+      case 'ambassador': return 'Data 3: NISN Roots Ambassador';
       case 'satgas': return 'Data 3: ID Satgas PPKSP Kabupaten';
     }
   };
@@ -347,7 +347,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
                       <option value="parent" className="text-slate-900">Orang Tua (Monitoring Rapot &amp; Akses Kuratif)</option>
                       <option value="tp2k" className="text-slate-900">TP2K - Tim Pencegahan Kekerasan Sekolah</option>
                       <option value="government" className="text-slate-900">Pemerintah / Dinas Pendidikan</option>
-                      <option value="ambassador" className="text-slate-900">Routes Ambassador - Duta Anti-Perundungan</option>
+                      <option value="ambassador" className="text-slate-900">Roots Ambassador - Duta Anti-Perundungan</option>
                       <option value="satgas" className="text-slate-900">Satgas PPKSP Kabupaten</option>
                     </select>
                   </div>
@@ -421,7 +421,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
                         <h4 className="text-xs font-bold text-slate-900">• Fajar Ramadhan (9B)</h4>
                         <p className="text-[10px] text-slate-500">Duta Anti-Perundungan - Pendampingan Siswa ke Siswa</p>
                       </div>
-                      <span className="text-xs font-bold px-2 py-0.5 rounded bg-orange-100 text-orange-900">Routes Ambassador</span>
+                      <span className="text-xs font-bold px-2 py-0.5 rounded bg-orange-100 text-orange-900">Roots Ambassador</span>
                     </button>
 
                     <button
@@ -485,7 +485,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
             </div>
 
             <div className="bg-slate-50 p-2 border-t border-slate-200 text-center text-[10px] text-slate-500 font-medium">
-              Sistem Terenkripsi NABIS • Hak Cipta © 2026 SMA Milbos Bogor
+              Sistem Terenkripsi NABIS • Hak Cipta © 2026 MAS Milbos Bogor
             </div>
           </div>
         </div>

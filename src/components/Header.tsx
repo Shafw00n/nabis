@@ -35,7 +35,7 @@ export const Header: React.FC<HeaderProps> = ({
   const roleBadgeLabel = isTeacher
     ? 'Portal Guru BK'
     : isAmbassador
-      ? 'Routes Ambassador'
+      ? 'Roots Ambassador'
       : isGovernment
         ? 'Portal Pemerintah'
         : isParent
@@ -65,7 +65,7 @@ export const Header: React.FC<HeaderProps> = ({
   const roleProfileLabel = isTeacher
     ? 'Konselor BK Sekolah'
     : isAmbassador
-      ? 'Routes Ambassador - Duta Anti-Perundungan'
+      ? 'Roots Ambassador - Duta Anti-Perundungan'
       : isGovernment
         ? 'Dinas Pendidikan'
         : isParent
@@ -75,7 +75,7 @@ export const Header: React.FC<HeaderProps> = ({
   const logoutLabel = isTeacher
     ? 'Keluar Portal Guru BK'
     : isAmbassador
-      ? 'Keluar Routes Ambassador'
+      ? 'Keluar Roots Ambassador'
       : isGovernment
         ? 'Keluar Portal Pemerintah'
         : isParent
@@ -83,7 +83,7 @@ export const Header: React.FC<HeaderProps> = ({
           : 'Keluar / Ganti Akun Siswa';
 
   return (
-    <header className="sticky top-0 z-40 bg-white backdrop-blur-md border-b border-sky-100 shadow-sm text-sky-900 transition-all">
+    <header className="sticky top-0 z-40 bg-white backdrop-blur-md border-b border-sky-100 shadow-sm text-sky-900 transition-all pt-[env(safe-area-inset-top,0px)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-4">
         
         {/* Logo & Brand */}
@@ -111,7 +111,7 @@ export const Header: React.FC<HeaderProps> = ({
           {isStudent && (
             <button
               onClick={onOpenReminderModal}
-              className={`hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold border transition-all ${
+              className={`hidden md:flex items-center gap-2 px-3 py-2.5 rounded-full text-xs font-semibold border transition-all min-h-[44px] ${
                 reminderSettings.enabled
                   ? 'bg-sky-50 text-sky-800 border-sky-200 hover:bg-sky-100'
                   : 'bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200'
@@ -130,7 +130,7 @@ export const Header: React.FC<HeaderProps> = ({
           <div className="relative">
             <button
               onClick={() => setShowNotifDropdown(!showNotifDropdown)}
-              className="relative p-2.5 rounded-xl text-sky-900 bg-slate-50 hover:bg-sky-50 border border-slate-200 transition-all focus:outline-none focus:ring-2 focus:ring-sky-600"
+              className="relative p-3 rounded-xl text-sky-900 bg-slate-50 hover:bg-sky-50 border border-slate-200 transition-all focus:outline-none focus:ring-2 focus:ring-sky-600 min-w-[44px] min-h-[44px] flex items-center justify-center"
               aria-label="Notifikasi"
             >
               <Bell className="w-5 h-5" />
@@ -143,7 +143,7 @@ export const Header: React.FC<HeaderProps> = ({
 
             {/* Notification Dropdown */}
             {showNotifDropdown && (
-              <div className="absolute right-0 mt-2 w-80 sm:w-96 bg-white rounded-2xl shadow-xl border border-slate-200 py-3 z-50 animate-in fade-in zoom-in-95 duration-150">
+              <div className="absolute right-0 sm:right-auto sm:left-1/2 sm:-translate-x-1/2 mt-2 w-[calc(100vw-32px)] sm:w-96 bg-white rounded-2xl shadow-xl border border-slate-200 py-3 z-50 animate-in fade-in zoom-in-95 duration-150 max-w-sm">
                 <div className="px-4 pb-2 border-b border-slate-100 flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <Bell className="w-4 h-4 text-sky-800" />
@@ -152,9 +152,9 @@ export const Header: React.FC<HeaderProps> = ({
                   {unreadCount > 0 && (
                     <button
                       onClick={onMarkAllRead}
-                      className="text-xs text-sky-800 hover:text-sky-950 font-bold flex items-center gap-1"
+                      className="text-xs text-sky-800 hover:text-sky-950 font-bold flex items-center gap-1 min-h-[44px] px-2"
                     >
-                      <CheckCircle2 className="w-3.5 h-3.5" /> Tandai Dibaca
+                      <CheckCircle2 className="w-3.5 h-3.5 shrink-0" /> Tandai Dibaca
                     </button>
                   )}
                 </div>
@@ -244,10 +244,10 @@ export const Header: React.FC<HeaderProps> = ({
 
             {/* Profile Menu Dropdown */}
             {showProfileMenu && (
-              <div className="absolute right-0 mt-2 w-64 bg-white rounded-2xl shadow-xl border border-slate-200 py-3 z-50 animate-in fade-in zoom-in-95 duration-150">
+              <div className="absolute right-0 mt-2 w-[calc(100vw-32px)] sm:w-64 bg-white rounded-2xl shadow-xl border border-slate-200 py-3 z-50 animate-in fade-in zoom-in-95 duration-150 max-w-xs">
                 <div className="px-4 pb-3 border-b border-slate-100">
                   <p className="text-xs font-bold text-slate-900">{currentUser?.name}</p>
-                  <p className="text-[11px] text-slate-500">{currentUser?.schoolName || 'SMA Milbos Bogor'}</p>
+                  <p className="text-[11px] text-slate-500">{currentUser?.schoolName || 'MAS Milbos Bogor'}</p>
                   <div className={`mt-2 inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold border ${roleProfileStyle}`}>
                     {roleProfileLabel}
                   </div>

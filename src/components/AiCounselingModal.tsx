@@ -92,7 +92,7 @@ export const AiCounselingModal: React.FC<AiCounselingModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
-      <div className="bg-white rounded-2xl max-w-4xl w-full border border-slate-200 shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+      <div className="bg-white rounded-2xl max-w-4xl w-full border border-slate-200 shadow-2xl overflow-hidden flex flex-col max-h-[90vh] pb-[env(safe-area-inset-bottom,0px)]">
         
         {/* Header Modal */}
         <div className="bg-sky-950 p-4 sm:p-5 text-white flex items-center justify-between shrink-0">
@@ -114,7 +114,7 @@ export const AiCounselingModal: React.FC<AiCounselingModalProps> = ({
           <div className="flex items-center space-x-2">
             <button
               onClick={() => setShowPrivacyModal(true)}
-              className="px-3 py-1.5 rounded-xl bg-sky-900 hover:bg-sky-800 text-white text-xs font-bold transition-all border border-sky-700 flex items-center gap-1.5"
+              className="px-3 py-2 rounded-xl bg-sky-900 hover:bg-sky-800 text-white text-xs font-bold transition-all border border-sky-700 flex items-center gap-1.5 min-h-[44px]"
             >
               <Lock className="w-3.5 h-3.5 text-cyan-300" />
               <span className="hidden sm:inline">Set Pengaturan Privasi</span>
@@ -122,7 +122,7 @@ export const AiCounselingModal: React.FC<AiCounselingModalProps> = ({
 
             <button
               onClick={onClose}
-              className="p-2 text-sky-200 hover:text-white rounded-xl hover:bg-sky-900 transition-colors"
+              className="p-3 text-sky-200 hover:text-white rounded-xl hover:bg-sky-900 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
             >
               <X className="w-5 h-5" />
             </button>
@@ -132,7 +132,7 @@ export const AiCounselingModal: React.FC<AiCounselingModalProps> = ({
         {/* Tab Navigation & Global Search Bar */}
         <div className="bg-slate-100 p-2 sm:px-6 border-b border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0">
           
-          <div className="flex items-center space-x-1.5 w-full sm:w-auto">
+          <div className="flex items-center gap-1.5 w-full sm:w-auto overflow-x-auto pb-0.5">
             <button
               onClick={() => setActiveTab('chat')}
               className={`px-3.5 py-2 rounded-xl text-xs font-bold flex items-center space-x-2 transition-all ${

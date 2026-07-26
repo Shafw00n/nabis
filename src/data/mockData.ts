@@ -8,7 +8,7 @@ export const DEMO_STUDENTS: UserStudent[] = [
     nik: '3171012304080001',
     nisn: '0082341234',
     className: '8B',
-    schoolName: 'SMA Milbos Bogor',
+    schoolName: 'MAS Milbos Bogor',
     avatarUrl: '',
     streakDays: 5
   },
@@ -19,7 +19,7 @@ export const DEMO_STUDENTS: UserStudent[] = [
     nik: '3171025506070002',
     nisn: '0082345678',
     className: '9A',
-    schoolName: 'SMA Milbos Bogor',
+    schoolName: 'MAS Milbos Bogor',
     avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
     streakDays: 12
   },
@@ -30,7 +30,7 @@ export const DEMO_STUDENTS: UserStudent[] = [
     nik: '3171031201090003',
     nisn: '0091234567',
     className: '7C',
-    schoolName: 'SMA Milbos Bogor',
+    schoolName: 'MAS Milbos Bogor',
     avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
     streakDays: 3
   }
@@ -44,7 +44,7 @@ export const DEMO_TEACHERS: UserTeacher[] = [
     nik: '3172015203850001',
     nip: '198503122010012004',
     roleTitle: 'Koordinator Guru Bimbingan Konseling (BK)',
-    schoolName: 'SMA Milbos Bogor',
+    schoolName: 'MAS Milbos Bogor',
     avatarUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80'
   },
   {
@@ -54,7 +54,7 @@ export const DEMO_TEACHERS: UserTeacher[] = [
     nik: '3172021509780002',
     nip: '197809152005011002',
     roleTitle: 'Guru BK Kelas 8 & Tim Kesiswaan',
-    schoolName: 'SMA Milbos Bogor',
+    schoolName: 'MAS Milbos Bogor',
     avatarUrl: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=200&q=80'
   }
 ];
@@ -67,7 +67,7 @@ export const DEMO_PARENTS: UserParent[] = [
     nik: '3171011505750001',
     childNisn: '0082341234',
     childName: 'Aqeela Nahdasasfia (8B)',
-    schoolName: 'SMA Milbos Bogor',
+    schoolName: 'MAS Milbos Bogor',
     avatarUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80'
   }
 ];
@@ -81,7 +81,7 @@ export const DEMO_AMBASSADORS: UserAmbassador[] = [
     nisn: '0082345679',
     roleTitle: 'Duta Anti-Perundungan',
     className: '9B',
-    schoolName: 'SMA Milbos Bogor',
+    schoolName: 'MAS Milbos Bogor',
     avatarUrl: '',
     streakDays: 14
   }
@@ -108,7 +108,7 @@ export const DEMO_TP2K: UserTP2K[] = [
     nik: '3173014208820005',
     institutionId: 'TP2K-SMA-001',
     roleTitle: 'Ketua Tim Pencegahan & Penanganan Kekerasan (TP2K)',
-    schoolName: 'SMA Milbos Bogor',
+    schoolName: 'MAS Milbos Bogor',
     avatarUrl: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80'
   }
 ];
@@ -131,7 +131,7 @@ export const DEMO_PROFESSIONALS: ProfessionalContact[] = [
     id: 'prof-1',
     name: 'Ibu Fitri Handayani, M.Pd',
     role: 'Guru BK',
-    institution: 'Ruang BK SMA Milbos Bogor',
+    institution: 'Ruang BK MAS Milbos Bogor',
     distance: 'Ruang BK Lt. 2 Sekolah',
     phone: '0812-3456-7890',
     status: 'Tersedia',
@@ -161,7 +161,7 @@ export const DEMO_PROFESSIONALS: ProfessionalContact[] = [
     id: 'prof-4',
     name: 'Tim Satgas TP2K Sekolah',
     role: 'Tim TP2K',
-    institution: 'Sekretariat TP2K SMA Milbos Bogor',
+    institution: 'Sekretariat TP2K MAS Milbos Bogor',
     distance: 'Gedung Kesiswaan Lt. 1',
     phone: '0815-5544-3322',
     status: 'Tersedia',
@@ -595,7 +595,7 @@ export const DEFAULT_REMINDER_SETTINGS: ReminderSettings = {
 };
 
 export const DEMO_SCHOOL_STATS: SchoolBullyingStat[] = [
-  { schoolName: 'SMA Milbos Bogor', province: 'Jawa Barat', totalCases: 12, activeCases: 3, resolvedCases: 9, avgResolutionDays: 18 },
+  { schoolName: 'MAS Milbos Bogor', province: 'Jawa Barat', totalCases: 12, activeCases: 3, resolvedCases: 9, avgResolutionDays: 18 },
   { schoolName: 'SMA Negeri 1 Jakarta', province: 'DKI Jakarta', totalCases: 8, activeCases: 2, resolvedCases: 6, avgResolutionDays: 22 },
   { schoolName: 'SMA Negeri 2 Bandung', province: 'Jawa Barat', totalCases: 15, activeCases: 5, resolvedCases: 10, avgResolutionDays: 25 },
   { schoolName: 'SMA Negeri 5 Surabaya', province: 'Jawa Timur', totalCases: 20, activeCases: 7, resolvedCases: 13, avgResolutionDays: 20 },

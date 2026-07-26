@@ -55,7 +55,7 @@ export const NotificationSettingsModal: React.FC<NotificationSettingsModalProps>
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 animate-in fade-in duration-200">
       
-      <div className="bg-white rounded-3xl max-w-lg w-full border border-sky-200 shadow-2xl overflow-hidden flex flex-col">
+      <div className="bg-white rounded-3xl max-w-lg w-full border border-sky-200 shadow-2xl overflow-hidden flex flex-col pb-[env(safe-area-inset-bottom,0px)]">
         
         {/* Modal Header */}
         <div className="bg-gradient-to-r from-sky-900 via-sky-800 to-cyan-800 p-5 text-white flex items-center justify-between">
@@ -71,7 +71,7 @@ export const NotificationSettingsModal: React.FC<NotificationSettingsModalProps>
 
           <button
             onClick={onClose}
-            className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+            className="p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
           >
             <X className="w-5 h-5" />
           </button>

@@ -138,7 +138,7 @@ export const AntiBullyingGamesView: React.FC<AntiBullyingGamesViewProps> = ({ on
 
             <button
               onClick={handleNextGame}
-              className="mt-3 w-full py-2.5 rounded-xl bg-cyan-700 hover:bg-cyan-800 text-white font-bold text-xs flex items-center justify-center gap-2 transition-colors"
+              className="mt-3 w-full min-h-[44px] rounded-xl bg-cyan-700 hover:bg-cyan-800 text-white font-bold text-xs flex items-center justify-center gap-2 transition-colors px-4"
             >
               <span>{activeGameIdx + 1 < MOCK_GAMES.length ? 'Misi Skenario Berikutnya' : 'Ulangi Misi'}</span>
               <ArrowRight className="w-4 h-4" />

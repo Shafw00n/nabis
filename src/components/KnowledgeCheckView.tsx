@@ -61,7 +61,7 @@ export const KnowledgeCheckView: React.FC<KnowledgeCheckViewProps> = ({ onBackTo
 
         <button
           onClick={onBackToDashboard}
-          className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-colors self-start sm:self-auto"
+          className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-colors self-start sm:self-auto min-h-[44px]"
         >
           ← Kembali ke Dashboard
         </button>
@@ -128,7 +128,7 @@ export const KnowledgeCheckView: React.FC<KnowledgeCheckViewProps> = ({ onBackTo
 
               <button
                 onClick={handleNext}
-                className="w-full py-2.5 rounded-xl bg-sky-700 hover:bg-sky-800 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-colors"
+                className="w-full min-h-[44px] rounded-xl bg-sky-700 hover:bg-sky-800 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-colors px-4"
               >
                 <span>Lanjut ke Soal Berikutnya</span>
                 <ArrowRight className="w-4 h-4" />

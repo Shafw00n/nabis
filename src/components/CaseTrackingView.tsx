@@ -83,7 +83,7 @@ export const CaseTrackingView: React.FC<CaseTrackingViewProps> = ({
         {onBack && (
           <button
             onClick={onBack}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-colors"
+            className="flex items-center gap-1.5 px-3 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-colors min-h-[44px]"
           >
             <ArrowRight className="w-3.5 h-3.5 rotate-180" /> Kembali
           </button>
@@ -97,14 +97,14 @@ export const CaseTrackingView: React.FC<CaseTrackingViewProps> = ({
         return (
           <div key={report.id} className="bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden">
             {/* Header */}
-            <div className="bg-sky-950 px-6 py-4 text-white">
-              <div className="flex items-center justify-between">
-                <div>
+            <div className="bg-sky-950 px-4 sm:px-6 py-4 text-white">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <div className="flex-1 min-w-0">
                   <p className="text-xs text-sky-300 font-semibold">Ticket #{report.ticketNumber}</p>
-                  <h3 className="text-lg font-bold mt-0.5">{report.incidentType} - {report.location}</h3>
+                  <h3 className="text-base sm:text-lg font-bold mt-0.5 truncate">{report.incidentType} - {report.location}</h3>
                 </div>
-                <div className="text-right">
-                  <div className={`px-3 py-1 rounded-full text-xs font-bold inline-flex items-center gap-1.5 ${
+                <div className="text-right shrink-0">
+                  <div className={`px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-bold inline-flex items-center gap-1.5 ${
                     report.triagePriority === 'Tinggi' ? 'bg-red-500/20 text-red-300 border border-red-400/30' :
                     report.triagePriority === 'Sedang' ? 'bg-amber-500/20 text-amber-300 border border-amber-400/30' :
                     'bg-blue-500/20 text-blue-300 border border-blue-400/30'
@@ -218,7 +218,7 @@ export const CaseTrackingView: React.FC<CaseTrackingViewProps> = ({
             <div className="bg-slate-50 px-6 py-3 border-t border-slate-200">
               <button
                 onClick={() => setExpandedReport(isExpanded ? null : report.id)}
-                className="flex items-center gap-1.5 text-xs font-bold text-sky-700 hover:text-sky-900 transition-colors"
+                className="flex items-center gap-1.5 text-xs font-bold text-sky-700 hover:text-sky-900 transition-colors min-h-[44px]"
               >
                 {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                 {isExpanded ? 'Sembunyikan detail' : 'Lihat detail laporan'}

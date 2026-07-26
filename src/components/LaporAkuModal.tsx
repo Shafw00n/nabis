@@ -117,7 +117,7 @@ export const LaporAkuModal: React.FC<LaporAkuModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 animate-in fade-in duration-200">
       
-      <div className="bg-white rounded-3xl max-w-2xl w-full border border-red-200 shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+      <div className="bg-white rounded-3xl max-w-2xl w-full border border-red-200 shadow-2xl overflow-hidden flex flex-col max-h-[90vh] pb-[env(safe-area-inset-bottom,0px)]">
         
         {/* Header Bar */}
         <div className="bg-gradient-to-r from-red-700 via-red-600 to-rose-700 p-5 text-white flex items-center justify-between shrink-0">
@@ -140,7 +140,7 @@ export const LaporAkuModal: React.FC<LaporAkuModalProps> = ({
 
           <button
             onClick={onClose}
-            className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+            className="p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
           >
             <X className="w-5 h-5" />
           </button>
@@ -361,9 +361,9 @@ export const LaporAkuModal: React.FC<LaporAkuModalProps> = ({
                               <button
                                 type="button"
                                 onClick={() => handleRemoveFile(idx)}
-                                className="p-0.5 rounded hover:bg-red-100 text-slate-400 hover:text-red-600 transition-colors"
+                                className="p-2 rounded hover:bg-red-100 text-slate-400 hover:text-red-600 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
                               >
-                                <X className="w-3.5 h-3.5" />
+                                <X className="w-4 h-4" />
                               </button>
                             </div>
                           ))}
@@ -567,7 +567,7 @@ export const LaporAkuModal: React.FC<LaporAkuModalProps> = ({
               <div className="space-y-3 text-xs">
                 <div className="p-3.5 rounded-xl border border-slate-200 flex items-center justify-between bg-white">
                   <div>
-                    <p className="font-bold text-slate-800">Konselor BK SMA Milbos Bogor</p>
+                    <p className="font-bold text-slate-800">Konselor BK MAS Milbos Bogor</p>
                     <p className="text-slate-500">Ibu Fitri, M.Pd (Jam Kerja Sekolah)</p>
                   </div>
                   <a href="tel:081234567890" className="px-3 py-1.5 rounded-lg bg-emerald-600 text-white font-bold text-xs hover:bg-emerald-700">

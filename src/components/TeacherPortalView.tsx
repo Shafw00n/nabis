@@ -497,7 +497,7 @@ export const TeacherPortalView: React.FC<TeacherPortalViewProps> = ({
       {/* ACTION RESPONSE MODAL FOR COUNSELOR */}
       {selectedReport && (
         <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl max-w-xl w-full p-6 shadow-xl border border-slate-200 space-y-4">
+          <div className="bg-white rounded-2xl max-w-xl w-full p-6 shadow-xl border border-slate-200 space-y-4 pb-[calc(1.5rem+env(safe-area-inset-bottom,0px))] overflow-y-auto max-h-[90vh]">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <div>
                 <h3 className="text-base font-bold text-slate-900">
@@ -509,7 +509,7 @@ export const TeacherPortalView: React.FC<TeacherPortalViewProps> = ({
               </div>
               <button
                 onClick={() => setSelectedReport(null)}
-                className="p-1 rounded-lg hover:bg-slate-100 text-slate-400 hover:text-slate-600"
+                className="p-3 rounded-lg hover:bg-slate-100 text-slate-400 hover:text-slate-600 min-w-[44px] min-h-[44px] flex items-center justify-center"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -612,9 +612,9 @@ export const TeacherPortalView: React.FC<TeacherPortalViewProps> = ({
                         <button
                           type="button"
                           onClick={() => handleRemoveFile(idx)}
-                          className="p-0.5 rounded hover:bg-red-100 text-slate-400 hover:text-red-600 transition-colors"
+                          className="p-2 rounded hover:bg-red-100 text-slate-400 hover:text-red-600 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
                         >
-                          <X className="w-3.5 h-3.5" />
+                          <X className="w-4 h-4" />
                         </button>
                       </div>
                     ))}

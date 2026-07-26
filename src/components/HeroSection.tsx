@@ -28,7 +28,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         <div className="max-w-2xl">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-700/50 border border-sky-500/40 text-sky-200 text-xs font-semibold mb-3 backdrop-blur-md">
             <ShieldCheck className="w-4 h-4 text-cyan-300" />
-            <span>Zona Bebas Bullying • SMA Milbos Bogor</span>
+            <span>Zona Bebas Bullying • MAS Milbos Bogor</span>
           </div>
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white leading-tight">
             Selamat Datang, <span className="text-cyan-300">Aqeela!</span>
@@ -39,7 +39,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         </div>
 
         {/* Quick Quote / Hero Action Card */}
-        <div className="bg-sky-950/60 backdrop-blur-md p-4 rounded-2xl border border-sky-600/40 max-w-sm flex flex-col justify-between shadow-inner">
+        <div className="bg-sky-950/60 backdrop-blur-md p-4 rounded-2xl border border-sky-600/40 max-w-sm w-full flex flex-col justify-between shadow-inner">
           <div className="flex items-start gap-3">
             <div className="p-2 rounded-xl bg-cyan-500/20 text-cyan-300">
               <Sparkles className="w-5 h-5" />
@@ -53,7 +53,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           </div>
           <button
             onClick={onOpenKnowledgeCheck}
-            className="mt-3 w-full py-2 px-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-sky-950 font-bold text-xs flex items-center justify-center gap-1.5 transition-colors shadow-sm"
+            className="mt-3 w-full py-3 px-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-sky-950 font-bold text-xs flex items-center justify-center gap-1.5 transition-colors shadow-sm min-h-[44px]"
           >
             <BookOpen className="w-4 h-4" /> Pelajari Hak & Keamanan Siswa
           </button>
@@ -76,7 +76,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               <button
                 key={cat}
                 onClick={() => setActiveTab(cat)}
-                className={`px-3 py-1.5 rounded-lg font-medium transition-all whitespace-nowrap ${
+                className={`px-3 py-2.5 rounded-lg font-medium transition-all whitespace-nowrap min-h-[44px] ${
                   activeTab === cat
                     ? 'bg-cyan-400 text-sky-950 font-bold shadow-sm'
                     : 'bg-sky-800/60 text-sky-200 hover:bg-sky-700/80 border border-sky-700'

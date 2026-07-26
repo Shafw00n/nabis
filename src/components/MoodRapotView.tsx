@@ -80,7 +80,7 @@ export const MoodRapotView: React.FC<MoodRapotViewProps> = ({ currentUser }) => 
               Mood Rapot: {currentUser.name}
             </h1>
             <p className="text-sky-200 text-xs sm:text-sm mt-1">
-              Periode {rapot.period} • Kelas {currentUser.className} • SMA Milbos Bogor
+              Periode {rapot.period} • Kelas {currentUser.className} • MAS Milbos Bogor
             </p>
           </div>
 
