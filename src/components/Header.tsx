@@ -143,7 +143,7 @@ export const Header: React.FC<HeaderProps> = ({
 
             {/* Notification Dropdown */}
             {showNotifDropdown && (
-              <div className="absolute top-full right-0 mt-2 w-[calc(100vw-32px)] sm:w-96 max-w-[calc(100vw-32px)] sm:max-w-sm bg-white rounded-2xl shadow-xl border border-slate-200 py-3 z-50 animate-in fade-in zoom-in-95 duration-150 overflow-hidden">
+              <div className="absolute top-full left-2 right-2 sm:left-auto sm:right-0 mt-2 w-auto sm:w-96 max-w-[calc(100vw-32px)] sm:max-w-sm bg-white rounded-2xl shadow-xl border border-slate-200 py-3 z-50 animate-in fade-in zoom-in-95 duration-150 overflow-hidden">
                 <div className="px-4 pb-2 border-b border-slate-100 flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <Bell className="w-4 h-4 text-sky-800" />
@@ -159,7 +159,7 @@ export const Header: React.FC<HeaderProps> = ({
                   )}
                 </div>
 
-                <div className="max-h-80 overflow-y-auto divide-y divide-slate-100">
+                <div className="max-h-80 overflow-y-auto ios-touch-scroll divide-y divide-slate-100">
                   {notifications.length === 0 ? (
                     <p className="text-center py-6 text-xs text-slate-400">Belum ada notifikasi baru</p>
                   ) : (
@@ -244,7 +244,7 @@ export const Header: React.FC<HeaderProps> = ({
 
             {/* Profile Menu Dropdown */}
             {showProfileMenu && (
-              <div className="absolute right-0 mt-2 w-[calc(100vw-32px)] sm:w-64 bg-white rounded-2xl shadow-xl border border-slate-200 py-3 z-50 animate-in fade-in zoom-in-95 duration-150 max-w-xs">
+              <div className="absolute top-full left-2 right-2 sm:left-auto sm:right-0 right-0 mt-2 w-auto sm:w-64 bg-white rounded-2xl shadow-xl border border-slate-200 py-3 z-50 animate-in fade-in zoom-in-95 duration-150 max-w-xs">
                 <div className="px-4 pb-3 border-b border-slate-100">
                   <p className="text-xs font-bold text-slate-900">{currentUser?.name}</p>
                   <p className="text-[11px] text-slate-500">{currentUser?.schoolName || 'MAS Milbos Bogor'}</p>
