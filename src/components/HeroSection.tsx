@@ -28,7 +28,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         <div className="max-w-2xl">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-700/50 border border-sky-500/40 text-sky-200 text-xs font-semibold mb-3 backdrop-blur-md">
             <ShieldCheck className="w-4 h-4 text-cyan-300" />
-            <span>Zona Bebas Bullying • SMP Negeri 1 NABIS</span>
+            <span>Zona Bebas Bullying • SMA Milbos Bogor</span>
           </div>
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white leading-tight">
             Selamat Datang, <span className="text-cyan-300">Aqeela!</span>

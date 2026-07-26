@@ -20,7 +20,10 @@ import {
   TrendingUp, 
   X,
   Edit,
-  UserX
+  UserX,
+  Paperclip,
+  Image,
+  File
 } from 'lucide-react';
 import { IncidentReport, UserTeacher, MoodRapot } from '../types';
 import { DEMO_MOOD_RAPOTS } from '../data/mockData';
@@ -48,6 +51,7 @@ export const TeacherPortalView: React.FC<TeacherPortalViewProps> = ({
   const [selectedReport, setSelectedReport] = useState<IncidentReport | null>(null);
   const [statusInput, setStatusInput] = useState<IncidentReport['status']>('Dalam Penanganan');
   const [responseInput, setResponseInput] = useState('');
+  const [attachedFiles, setAttachedFiles] = useState<{ name: string; type: string; size: string }[]>([]);
 
   // Filtered reports
   const filteredReports = reports.filter(r => {
@@ -67,12 +71,34 @@ export const TeacherPortalView: React.FC<TeacherPortalViewProps> = ({
     setSelectedReport(report);
     setStatusInput(report.status);
     setResponseInput(report.responseNote || '');
+    setAttachedFiles([]);
+  };
+
+  const handleFileAttach = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (files) {
+      const newFiles: { name: string; type: string; size: string }[] = Array.from(files).map((f: File) => ({
+        name: f.name,
+        type: f.type,
+        size: (f.size / 1024).toFixed(1) + ' KB'
+      }));
+      setAttachedFiles(prev => [...prev, ...newFiles]);
+    }
+  };
+
+  const handleRemoveFile = (index: number) => {
+    setAttachedFiles(prev => prev.filter((_, i) => i !== index));
   };
 
   const handleSaveResponse = (e: React.FormEvent) => {
     e.preventDefault();
     if (!selectedReport) return;
-    onUpdateReportStatus(selectedReport.id, statusInput, responseInput);
+    let note = responseInput;
+    if (attachedFiles.length > 0) {
+      const fileList = attachedFiles.map(f => f.name).join(', ');
+      note += `\n\nLampiran bukti: ${fileList}`;
+    }
+    onUpdateReportStatus(selectedReport.id, statusInput, note);
     setSelectedReport(null);
   };
 
@@ -104,7 +130,7 @@ export const TeacherPortalView: React.FC<TeacherPortalViewProps> = ({
               <span>Portal Terbatas • Bimbingan Konseling (BK)</span>
             </div>
             <h1 className="text-2xl sm:text-3xl font-black tracking-tight">
-              Dashboard Konselor: {currentTeacher.name}
+              N-Insight: {currentTeacher.name}
             </h1>
             <p className="text-sky-200 text-xs sm:text-sm">
               {currentTeacher.roleTitle} • NIP: {currentTeacher.nip} • {currentTeacher.schoolName}
@@ -294,7 +320,7 @@ export const TeacherPortalView: React.FC<TeacherPortalViewProps> = ({
                             ) : (
                               <div>
                                 <p className="font-bold text-slate-800">{report.reporterName || 'Siswa'}</p>
-                                <p className="text-[11px] text-sky-700">{report.reporterClass || 'Siswa SMP'}</p>
+                                <p className="text-[11px] text-sky-700">{report.reporterClass || 'Siswa SMA'}</p>
                               </div>
                             )}
                           </td>
@@ -495,6 +521,29 @@ export const TeacherPortalView: React.FC<TeacherPortalViewProps> = ({
               <p className="text-[11px] text-slate-500 mt-1">• Lokasi: {selectedReport.location}</p>
             </div>
 
+            {selectedReport.attachments && selectedReport.attachments.length > 0 && (
+              <div className="p-3 rounded-xl bg-purple-50 border border-purple-200 text-xs">
+                <p className="font-bold text-[11px] text-purple-900 flex items-center gap-1.5 mb-2">
+                  <Paperclip className="w-3.5 h-3.5" /> Bukti Lampiran dari Siswa ({selectedReport.attachments.length})
+                </p>
+                <div className="space-y-1.5">
+                  {selectedReport.attachments.map((att, idx) => (
+                    <div key={idx} className="flex items-center gap-2 p-2 rounded-lg bg-white border border-purple-100">
+                      {att.type.includes('image') ? (
+                        <Image className="w-4 h-4 text-purple-500 shrink-0" />
+                      ) : (
+                        <File className="w-4 h-4 text-blue-500 shrink-0" />
+                      )}
+                      <div className="flex-1 min-w-0">
+                        <p className="font-bold text-purple-900 truncate">{att.name}</p>
+                        <p className="text-[9px] text-purple-400">{att.size}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             <form onSubmit={handleSaveResponse} className="space-y-4">
               <div>
                 <label className="block text-xs font-bold text-slate-700 mb-1">
@@ -523,6 +572,54 @@ export const TeacherPortalView: React.FC<TeacherPortalViewProps> = ({
                   className="w-full p-3 rounded-xl border border-slate-300 text-xs focus:outline-none focus:ring-2 focus:ring-sky-600"
                   required
                 />
+              </div>
+
+              {/* Attach File Section */}
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1">
+                  Lampirkan Bukti Penanganan (Opsional)
+                </label>
+                <div className="border-2 border-dashed border-slate-200 rounded-xl p-4 text-center hover:border-sky-400 transition-colors bg-slate-50">
+                  <input
+                    type="file"
+                    id="file-upload"
+                    multiple
+                    accept=".jpg,.jpeg,.png,.pdf,.doc,.docx"
+                    onChange={handleFileAttach}
+                    className="hidden"
+                  />
+                  <label htmlFor="file-upload" className="cursor-pointer">
+                    <Paperclip className="w-6 h-6 text-slate-400 mx-auto mb-1.5" />
+                    <p className="text-xs font-bold text-slate-600">Klik untuk lampirkan bukti</p>
+                    <p className="text-[10px] text-slate-400 mt-0.5">JPG, PNG, PDF, DOC (maks. 5MB)</p>
+                  </label>
+                </div>
+
+                {/* Attached Files List */}
+                {attachedFiles.length > 0 && (
+                  <div className="mt-2 space-y-1.5">
+                    {attachedFiles.map((file, idx) => (
+                      <div key={idx} className="flex items-center gap-2 p-2 rounded-lg bg-sky-50 border border-sky-100">
+                        {file.type.includes('image') ? (
+                          <Image className="w-4 h-4 text-sky-600 shrink-0" />
+                        ) : (
+                          <File className="w-4 h-4 text-sky-600 shrink-0" />
+                        )}
+                        <div className="flex-1 min-w-0">
+                          <p className="text-[11px] font-bold text-slate-800 truncate">{file.name}</p>
+                          <p className="text-[9px] text-slate-400">{file.size}</p>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => handleRemoveFile(idx)}
+                          className="p-0.5 rounded hover:bg-red-100 text-slate-400 hover:text-red-600 transition-colors"
+                        >
+                          <X className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
 
               <div className="flex justify-end space-x-2 pt-2">

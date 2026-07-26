@@ -1,4 +1,4 @@
-import { Article, MoodOption, QuizQuestion, GameScenario, IncidentReport, NotificationItem, ReminderSettings, UserStudent, UserTeacher, UserParent, UserTP2K, UserGovernment, MoodRapot, ProfessionalContact } from '../types';
+import { Article, MoodOption, QuizQuestion, GameScenario, IncidentReport, NotificationItem, ReminderSettings, UserStudent, UserTeacher, UserParent, UserTP2K, UserGovernment, MoodRapot, ProfessionalContact, UserAmbassador, UserSatgas, SchoolBullyingStat } from '../types';
 
 export const DEMO_STUDENTS: UserStudent[] = [
   {
@@ -8,7 +8,7 @@ export const DEMO_STUDENTS: UserStudent[] = [
     nik: '3171012304080001',
     nisn: '0082341234',
     className: '8B',
-    schoolName: 'SMP Nusantara Jakarta',
+    schoolName: 'SMA Milbos Bogor',
     avatarUrl: '',
     streakDays: 5
   },
@@ -19,7 +19,7 @@ export const DEMO_STUDENTS: UserStudent[] = [
     nik: '3171025506070002',
     nisn: '0082345678',
     className: '9A',
-    schoolName: 'SMP Nusantara Jakarta',
+    schoolName: 'SMA Milbos Bogor',
     avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
     streakDays: 12
   },
@@ -30,7 +30,7 @@ export const DEMO_STUDENTS: UserStudent[] = [
     nik: '3171031201090003',
     nisn: '0091234567',
     className: '7C',
-    schoolName: 'SMP Nusantara Jakarta',
+    schoolName: 'SMA Milbos Bogor',
     avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
     streakDays: 3
   }
@@ -44,7 +44,7 @@ export const DEMO_TEACHERS: UserTeacher[] = [
     nik: '3172015203850001',
     nip: '198503122010012004',
     roleTitle: 'Koordinator Guru Bimbingan Konseling (BK)',
-    schoolName: 'SMP Nusantara Jakarta',
+    schoolName: 'SMA Milbos Bogor',
     avatarUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80'
   },
   {
@@ -54,7 +54,7 @@ export const DEMO_TEACHERS: UserTeacher[] = [
     nik: '3172021509780002',
     nip: '197809152005011002',
     roleTitle: 'Guru BK Kelas 8 & Tim Kesiswaan',
-    schoolName: 'SMP Nusantara Jakarta',
+    schoolName: 'SMA Milbos Bogor',
     avatarUrl: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=200&q=80'
   }
 ];
@@ -67,8 +67,36 @@ export const DEMO_PARENTS: UserParent[] = [
     nik: '3171011505750001',
     childNisn: '0082341234',
     childName: 'Aqeela Nahdasasfia (8B)',
-    schoolName: 'SMP Nusantara Jakarta',
+    schoolName: 'SMA Milbos Bogor',
     avatarUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80'
+  }
+];
+
+export const DEMO_AMBASSADORS: UserAmbassador[] = [
+  {
+    id: 'amb-1',
+    role: 'ambassador',
+    name: 'Fajar Ramadhan',
+    nik: '3171011403080002',
+    nisn: '0082345679',
+    roleTitle: 'Duta Anti-Perundungan',
+    className: '9B',
+    schoolName: 'SMA Milbos Bogor',
+    avatarUrl: 'https://images.unsplash.com/photo-1599566150163-29194dcabd9c?auto=format&fit=crop&w=200&q=80',
+    streakDays: 14
+  }
+];
+
+export const DEMO_SATGAS: UserSatgas[] = [
+  {
+    id: 'sat-1',
+    role: 'satgas',
+    name: 'Bapak H. Dedi Mulyadi, S.H.',
+    nik: '3201011505750001',
+    institutionId: 'SATGAS-PPKSP-KAB-001',
+    roleTitle: 'Ketua Satgas PPKSP Kabupaten',
+    schoolName: 'Satgas PPKSP Kabupaten Bogor',
+    avatarUrl: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=200&q=80'
   }
 ];
 
@@ -78,9 +106,9 @@ export const DEMO_TP2K: UserTP2K[] = [
     role: 'tp2k',
     name: 'Ibu Ratna Dewi, S.Pd (Tim TP2K)',
     nik: '3173014208820005',
-    institutionId: 'TP2K-SMPN1-001',
+    institutionId: 'TP2K-SMA-001',
     roleTitle: 'Ketua Tim Pencegahan & Penanganan Kekerasan (TP2K)',
-    schoolName: 'SMP Nusantara Jakarta',
+    schoolName: 'SMA Milbos Bogor',
     avatarUrl: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80'
   }
 ];
@@ -91,9 +119,9 @@ export const DEMO_GOVERNMENT: UserGovernment[] = [
     role: 'government',
     name: 'Bapak Dr. H. Ahmad Fauzi, M.Si',
     nik: '3174011204720008',
-    institutionId: 'DINAS-DKI-8821',
-    roleTitle: 'Pengawas Sub-Dinas Pendidikan & Kebudayaan',
-    schoolName: 'Dinas Pendidikan DKI Jakarta',
+    institutionId: 'DINAS-KAB-8821',
+    roleTitle: 'Pengawas Dinas Pendidikan Kabupaten Bogor',
+    schoolName: 'Dinas Pendidikan Kabupaten Bogor',
     avatarUrl: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=200&q=80'
   }
 ];
@@ -103,7 +131,7 @@ export const DEMO_PROFESSIONALS: ProfessionalContact[] = [
     id: 'prof-1',
     name: 'Ibu Fitri Handayani, M.Pd',
     role: 'Guru BK',
-    institution: 'Ruang BK SMP Nusantara Jakarta',
+    institution: 'Ruang BK SMA Milbos Bogor',
     distance: 'Ruang BK Lt. 2 Sekolah',
     phone: '0812-3456-7890',
     status: 'Tersedia',
@@ -133,7 +161,7 @@ export const DEMO_PROFESSIONALS: ProfessionalContact[] = [
     id: 'prof-4',
     name: 'Tim Satgas TP2K Sekolah',
     role: 'Tim TP2K',
-    institution: 'Sekretariat TP2K SMP Nusantara',
+    institution: 'Sekretariat TP2K SMA Milbos Bogor',
     distance: 'Gedung Kesiswaan Lt. 1',
     phone: '0815-5544-3322',
     status: 'Tersedia',
@@ -214,7 +242,7 @@ export const DEMO_MOOD_RAPOTS: MoodRapot[] = [
     triggerFactors: ['Tugas Sekolah Terkendali', 'Dukungan Teman', 'Kegiatan Olahraga'],
     aiSummary: 'Aqeela menunjukkan tren kestabilan emosi yang sangat memuaskan sepanjang bulan Juli. Aktivitas check-in harian berjalan konsisten. Terdeteksi lonjakan motivasi tinggi usai mengikuti kegiatan ekstrakurikuler.',
     recommendations: [
-      'Pertahankan kebiasaan Daily Mood Check harian.',
+      'Pertahankan kebiasaan N-Mood harian.',
       'Jadilah pahlawan Upstander di kelas untuk merangkul teman yang menyendiri.',
       'Lanjutkan komunikasi terbuka dengan orang tua dan guru.'
     ],
@@ -331,7 +359,7 @@ export const MOCK_ARTICLES: Article[] = [
     summary: 'Pencatatan emosi harian membantu meningkatkan kecerdasan emosional dan mencegah akumulasi stres.',
     content: [
       'Menyimpan kesedihan sendirian dapat memicu keletihan mental.',
-      'Manfaat Daily Mood Check:',
+      'Manfaat N-Mood:',
       '• Membantu merefleksikan pemicu stres harian.',
       '• Memberikan gambaran rapot mood berkala kepada tim konselor.',
       '• Membuka akses bantuan emosional secara berkala.'
@@ -474,7 +502,15 @@ export const INITIAL_REPORTS: IncidentReport[] = [
     status: 'Dalam Penanganan',
     createdAt: '23 Juli 2026, 14:20 WIB',
     responseNote: 'Laporan diverifikasi oleh Ibu Fitri, M.Pd. Tim Konselor telah menjadwalkan konseling individu dan mediasi terpandu.',
-    assignedTeacher: 'Ibu Fitri Handayani, M.Pd'
+    assignedTeacher: 'Ibu Fitri Handayani, M.Pd',
+    currentStage: 'investigation',
+    stages: [
+      { stage: 'reported', label: 'Laporan Diterima', completedAt: '23 Juli 2026', dueDays: 0, assignedTo: 'Sistem NABIS', notes: 'Laporan berhasil dikirim dan tercatat dalam sistem.' },
+      { stage: 'observation', label: 'Observasi Agen Perubahan Roots', completedAt: '24 Juli 2026', dueDays: 2, assignedTo: 'Agen Perubahan Roots', notes: 'Observasi lingkungan telah dilakukan.' },
+      { stage: 'assessment', label: 'Assessment Guru BK', completedAt: '25 Juli 2026', dueDays: 3, assignedTo: 'Ibu Fitri Handayani, M.Pd', notes: 'Asesmen oleh Guru BK telah selesai dilaksanakan.' },
+      { stage: 'investigation', label: 'Investigasi TPPK Sekolah', dueDays: 14, assignedTo: 'TPPK Sekolah', notes: 'Investigasi oleh TPPK Sekolah sedang berlangsung.' }
+    ],
+    deadline: '22 Agustus 2026'
   },
   {
     id: 'rep-102',
@@ -490,7 +526,14 @@ export const INITIAL_REPORTS: IncidentReport[] = [
     status: 'Diverifikasi Konselor',
     createdAt: '24 Juli 2026, 09:15 WIB',
     responseNote: 'Saksi dan laporan sudah dicatat. Panggilan Wali Kelas sedang diproses.',
-    assignedTeacher: 'Bapak Drs. Sugeng Santoso'
+    assignedTeacher: 'Bapak Drs. Sugeng Santoso',
+    currentStage: 'assessment',
+    stages: [
+      { stage: 'reported', label: 'Laporan Diterima', completedAt: '24 Juli 2026', dueDays: 0, assignedTo: 'Sistem NABIS', notes: 'Laporan berhasil dikirim dan tercatat dalam sistem.' },
+      { stage: 'observation', label: 'Observasi Agen Perubahan Roots', completedAt: '25 Juli 2026', dueDays: 2, assignedTo: 'Agen Perubahan Roots', notes: 'Observasi lingkungan telah dilakukan.' },
+      { stage: 'assessment', label: 'Assessment Guru BK', dueDays: 3, assignedTo: 'Bapak Drs. Sugeng Santoso', notes: 'Proses asesmen oleh Guru BK sedang berlangsung.' }
+    ],
+    deadline: '23 Agustus 2026'
   },
   {
     id: 'rep-100',
@@ -506,14 +549,19 @@ export const INITIAL_REPORTS: IncidentReport[] = [
     status: 'Selesai Dampak Positif',
     createdAt: '15 Juli 2026, 19:00 WIB',
     responseNote: 'Kasus diselesaikan secara kekeluargaan. Pelaku telah meminta maaf dan menandatangani komitmen anti-bullying.',
-    assignedTeacher: 'Ibu Fitri Handayani, M.Pd'
+    assignedTeacher: 'Ibu Fitri Handayani, M.Pd',
+    currentStage: 'reported',
+    stages: [
+      { stage: 'reported', label: 'Laporan Diterima', completedAt: '15 Juli 2026', dueDays: 0, assignedTo: 'Sistem NABIS', notes: 'Laporan berhasil dikirim dan tercatat dalam sistem.' }
+    ],
+    deadline: '14 Agustus 2026'
   }
 ];
 
 export const INITIAL_NOTIFICATIONS: NotificationItem[] = [
   {
     id: 'notif-1',
-    title: 'Pengingat Daily Mood Check',
+    title: 'Pengingat N-Mood',
     message: 'Bagaimana perasaanmu hari ini? Ambil waktu 10 detik untuk melakukan refleksi harian di NABIS.',
     time: '08:00 WIB Hari ini',
     type: 'reminder',
@@ -545,5 +593,30 @@ export const DEFAULT_REMINDER_SETTINGS: ReminderSettings = {
   motivationalQuote: true,
   lastTriggered: '24 Juli 2026'
 };
+
+export const DEMO_SCHOOL_STATS: SchoolBullyingStat[] = [
+  { schoolName: 'SMA Milbos Bogor', province: 'Jawa Barat', totalCases: 12, activeCases: 3, resolvedCases: 9, avgResolutionDays: 18 },
+  { schoolName: 'SMA Negeri 1 Jakarta', province: 'DKI Jakarta', totalCases: 8, activeCases: 2, resolvedCases: 6, avgResolutionDays: 22 },
+  { schoolName: 'SMA Negeri 2 Bandung', province: 'Jawa Barat', totalCases: 15, activeCases: 5, resolvedCases: 10, avgResolutionDays: 25 },
+  { schoolName: 'SMA Negeri 5 Surabaya', province: 'Jawa Timur', totalCases: 20, activeCases: 7, resolvedCases: 13, avgResolutionDays: 20 },
+  { schoolName: 'SMA Negeri 3 Medan', province: 'Sumatera Utara', totalCases: 10, activeCases: 4, resolvedCases: 6, avgResolutionDays: 28 },
+  { schoolName: 'SMA Negeri 1 Makassar', province: 'Sulawesi Selatan', totalCases: 6, activeCases: 1, resolvedCases: 5, avgResolutionDays: 15 },
+  { schoolName: 'SMA Negeri 4 Semarang', province: 'Jawa Tengah', totalCases: 14, activeCases: 6, resolvedCases: 8, avgResolutionDays: 24 },
+  { schoolName: 'SMA Negeri 8 Denpasar', province: 'Bali', totalCases: 5, activeCases: 1, resolvedCases: 4, avgResolutionDays: 16 },
+  { schoolName: 'SMA Negeri 1 Yogyakarta', province: 'DI Yogyakarta', totalCases: 7, activeCases: 2, resolvedCases: 5, avgResolutionDays: 19 },
+  { schoolName: 'SMA Negeri 2 Palembang', province: 'Sumatera Selatan', totalCases: 9, activeCases: 3, resolvedCases: 6, avgResolutionDays: 26 },
+];
+
+export const DEMO_PROVINCE_STATS = [
+  { province: 'Jawa Barat', totalCases: 27, activeCases: 8, resolvedCases: 19, avgResolutionDays: 22 },
+  { province: 'Jawa Timur', totalCases: 20, activeCases: 7, resolvedCases: 13, avgResolutionDays: 20 },
+  { province: 'DKI Jakarta', totalCases: 8, activeCases: 2, resolvedCases: 6, avgResolutionDays: 22 },
+  { province: 'Jawa Tengah', totalCases: 14, activeCases: 6, resolvedCases: 8, avgResolutionDays: 24 },
+  { province: 'Sumatera Utara', totalCases: 10, activeCases: 4, resolvedCases: 6, avgResolutionDays: 28 },
+  { province: 'Sulawesi Selatan', totalCases: 6, activeCases: 1, resolvedCases: 5, avgResolutionDays: 15 },
+  { province: 'Bali', totalCases: 5, activeCases: 1, resolvedCases: 4, avgResolutionDays: 16 },
+  { province: 'DI Yogyakarta', totalCases: 7, activeCases: 2, resolvedCases: 5, avgResolutionDays: 19 },
+  { province: 'Sumatera Selatan', totalCases: 9, activeCases: 3, resolvedCases: 6, avgResolutionDays: 26 },
+];
 
 

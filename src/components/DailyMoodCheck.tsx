@@ -99,7 +99,7 @@ export const DailyMoodCheck: React.FC<DailyMoodCheckProps> = ({
             <div className="p-2 rounded-xl bg-sky-100 text-sky-800">
               <Smile className="w-5 h-5" />
             </div>
-            <h2 className="text-xl sm:text-2xl font-black text-slate-900">Daily Mood Check</h2>
+            <h2 className="text-xl sm:text-2xl font-black text-slate-900">N-Mood</h2>
             <span className="px-2.5 py-1 text-xs font-bold bg-sky-100 text-sky-900 rounded-full border border-sky-200">
               Refleksi Harian
             </span>

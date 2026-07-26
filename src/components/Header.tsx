@@ -27,6 +27,7 @@ export const Header: React.FC<HeaderProps> = ({
   const unreadCount = notifications.filter(n => !n.read).length;
 
   const isTeacher = currentUser?.role === 'teacher';
+  const isAmbassador = currentUser?.role === 'ambassador';
 
   return (
     <header className="sticky top-0 z-40 bg-white backdrop-blur-md border-b border-sky-100 shadow-sm text-sky-900 transition-all">
@@ -43,9 +44,11 @@ export const Header: React.FC<HeaderProps> = ({
               <span className={`hidden sm:inline-block px-2.5 py-0.5 text-xs font-bold rounded-full border ${
                 isTeacher 
                   ? 'bg-amber-100 text-amber-900 border-amber-300' 
-                  : 'bg-sky-100 text-sky-900 border-sky-200'
+                  : isAmbassador
+                    ? 'bg-orange-100 text-orange-900 border-orange-300'
+                    : 'bg-sky-100 text-sky-900 border-sky-200'
               }`}>
-                {isTeacher ? 'Portal Guru BK' : 'Siswa Active'}
+                {isTeacher ? 'Portal Guru BK' : isAmbassador ? 'Routes Ambassador' : 'Siswa Active'}
               </span>
             </div>
             <p className="hidden sm:block text-[11px] sm:text-xs text-slate-500 font-medium">
@@ -193,13 +196,15 @@ export const Header: React.FC<HeaderProps> = ({
               <div className="absolute right-0 mt-2 w-64 bg-white rounded-2xl shadow-xl border border-slate-200 py-3 z-50 animate-in fade-in zoom-in-95 duration-150">
                 <div className="px-4 pb-3 border-b border-slate-100">
                   <p className="text-xs font-bold text-slate-900">{currentUser?.name}</p>
-                  <p className="text-[11px] text-slate-500">{currentUser?.schoolName || 'SMP Nusantara Jakarta'}</p>
+                  <p className="text-[11px] text-slate-500">{currentUser?.schoolName || 'SMA Milbos Bogor'}</p>
                   <div className={`mt-2 inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold border ${
                     isTeacher
                       ? 'bg-amber-50 text-amber-900 border-amber-200'
-                      : 'bg-sky-50 text-sky-900 border-sky-200'
+                      : isAmbassador
+                        ? 'bg-orange-50 text-orange-900 border-orange-200'
+                        : 'bg-sky-50 text-sky-900 border-sky-200'
                   }`}>
-                    {isTeacher ? 'Konselor BK Sekolah' : `Siswa Terdaftar • Kelas ${(currentUser as any)?.className}`}
+                    {isTeacher ? 'Konselor BK Sekolah' : isAmbassador ? 'Routes Ambassador - Duta Anti-Perundungan' : `Siswa Terdaftar • Kelas ${(currentUser as any)?.className}`}
                   </div>
                 </div>
 

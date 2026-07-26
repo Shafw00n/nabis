@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { IncidentReport } from '../types';
-import { ShieldAlert, X, Send, Lock, EyeOff, FileText, PhoneCall, CheckCircle2, AlertTriangle, Clock, Paperclip, Check } from 'lucide-react';
+import { ShieldAlert, X, Send, Lock, EyeOff, FileText, PhoneCall, CheckCircle2, AlertTriangle, Clock, Paperclip, Check, Image, File } from 'lucide-react';
 
 interface LaporAkuModalProps {
   isOpen: boolean;
@@ -26,10 +26,29 @@ export const LaporAkuModal: React.FC<LaporAkuModalProps> = ({
   const [reporterName, setReporterName] = useState('Aqeela Nahdasasfia');
   const [witnesses, setWitnesses] = useState('');
   const [hasEvidence, setHasEvidence] = useState(false);
+  const [attachedFiles, setAttachedFiles] = useState<{ name: string; type: string; size: string }[]>([]);
   const [submittedSuccess, setSubmittedSuccess] = useState(false);
   const [createdTicket, setCreatedTicket] = useState('');
 
   if (!isOpen) return null;
+
+  const handleFileAttach = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (files) {
+      const newFiles: { name: string; type: string; size: string }[] = Array.from(files).map((f: File) => ({
+        name: f.name,
+        type: f.type,
+        size: (f.size / 1024).toFixed(1) + ' KB'
+      }));
+      setAttachedFiles(prev => [...prev, ...newFiles]);
+      setHasEvidence(true);
+    }
+  };
+
+  const handleRemoveFile = (index: number) => {
+    setAttachedFiles(prev => prev.filter((_, i) => i !== index));
+    if (attachedFiles.length <= 1) setHasEvidence(false);
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,7 +67,8 @@ export const LaporAkuModal: React.FC<LaporAkuModalProps> = ({
       description,
       isAnonymous,
       reporterName: isAnonymous ? undefined : reporterName,
-      witnesses: witnesses || undefined
+      witnesses: witnesses || undefined,
+      attachments: attachedFiles.length > 0 ? attachedFiles : undefined
     });
 
     setSubmittedSuccess(true);
@@ -60,6 +80,7 @@ export const LaporAkuModal: React.FC<LaporAkuModalProps> = ({
     setLocation('');
     setWitnesses('');
     setHasEvidence(false);
+    setAttachedFiles([]);
     setActiveTab('status');
   };
 
@@ -275,18 +296,49 @@ export const LaporAkuModal: React.FC<LaporAkuModalProps> = ({
                       <label className="block text-xs font-bold text-slate-700 mb-1">
                         Lampirkan Bukti Foto/Screenshot:
                       </label>
-                      <button
-                        type="button"
-                        onClick={() => setHasEvidence(!hasEvidence)}
-                        className={`w-full py-2 px-3 rounded-xl border text-xs font-semibold flex items-center justify-center gap-2 transition-all ${
-                          hasEvidence
-                            ? 'bg-emerald-50 border-emerald-400 text-emerald-800'
-                            : 'bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100'
-                        }`}
-                      >
-                        <Paperclip className="w-3.5 h-3.5" />
-                        <span>{hasEvidence ? '1 Berkas Bukti Ditolong' : '+ Unggah Bukti (Screenshots/Foto)'}</span>
-                      </button>
+                      <div className="border-2 border-dashed border-slate-200 rounded-xl p-3 text-center hover:border-red-400 transition-colors bg-slate-50">
+                        <input
+                          type="file"
+                          id="evidence-upload"
+                          multiple
+                          accept=".jpg,.jpeg,.png,.pdf,.mp4"
+                          onChange={handleFileAttach}
+                          className="hidden"
+                        />
+                        <label htmlFor="evidence-upload" className="cursor-pointer">
+                          <Paperclip className="w-5 h-5 text-slate-400 mx-auto mb-1" />
+                          <p className="text-[11px] font-bold text-slate-600">Klik untuk unggah bukti</p>
+                          <p className="text-[9px] text-slate-400">Foto, Screenshot, Video (maks. 10MB)</p>
+                        </label>
+                      </div>
+
+                      {/* Attached Files List */}
+                      {attachedFiles.length > 0 && (
+                        <div className="mt-2 space-y-1.5">
+                          {attachedFiles.map((file, idx) => (
+                            <div key={idx} className="flex items-center gap-2 p-2 rounded-lg bg-red-50 border border-red-100">
+                              {file.type.includes('image') ? (
+                                <Image className="w-4 h-4 text-red-500 shrink-0" />
+                              ) : file.type.includes('video') ? (
+                                <FileText className="w-4 h-4 text-purple-500 shrink-0" />
+                              ) : (
+                                <File className="w-4 h-4 text-blue-500 shrink-0" />
+                              )}
+                              <div className="flex-1 min-w-0">
+                                <p className="text-[11px] font-bold text-slate-800 truncate">{file.name}</p>
+                                <p className="text-[9px] text-slate-400">{file.size}</p>
+                              </div>
+                              <button
+                                type="button"
+                                onClick={() => handleRemoveFile(idx)}
+                                className="p-0.5 rounded hover:bg-red-100 text-slate-400 hover:text-red-600 transition-colors"
+                              >
+                                <X className="w-3.5 h-3.5" />
+                              </button>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </div>
 
@@ -350,6 +402,27 @@ export const LaporAkuModal: React.FC<LaporAkuModalProps> = ({
                         </div>
                       </div>
                     )}
+
+                    {rep.attachments && rep.attachments.length > 0 && (
+                      <div className="p-3 rounded-xl bg-purple-50 border border-purple-200 text-xs">
+                        <p className="font-bold text-[11px] text-purple-900 flex items-center gap-1.5 mb-1.5">
+                          <Paperclip className="w-3.5 h-3.5" /> Bukti Lampiran ({rep.attachments.length})
+                        </p>
+                        <div className="space-y-1">
+                          {rep.attachments.map((att, idx) => (
+                            <div key={idx} className="flex items-center gap-2 text-purple-800">
+                              {att.type.includes('image') ? (
+                                <Image className="w-3.5 h-3.5 shrink-0" />
+                              ) : (
+                                <File className="w-3.5 h-3.5 shrink-0" />
+                              )}
+                              <span className="truncate">{att.name}</span>
+                              <span className="text-purple-400 text-[9px] shrink-0">{att.size}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 ))
               )}
@@ -372,7 +445,7 @@ export const LaporAkuModal: React.FC<LaporAkuModalProps> = ({
               <div className="space-y-3 text-xs">
                 <div className="p-3.5 rounded-xl border border-slate-200 flex items-center justify-between bg-white">
                   <div>
-                    <p className="font-bold text-slate-800">Konselor BK SMP Negeri 1 NABIS</p>
+                    <p className="font-bold text-slate-800">Konselor BK SMA Milbos Bogor</p>
                     <p className="text-slate-500">Ibu Fitri, M.Pd (Jam Kerja Sekolah)</p>
                   </div>
                   <a href="tel:081234567890" className="px-3 py-1.5 rounded-lg bg-emerald-600 text-white font-bold text-xs hover:bg-emerald-700">

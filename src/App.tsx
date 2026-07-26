@@ -10,7 +10,9 @@ import { AntiBullyingGamesView } from './components/AntiBullyingGamesView';
 import { ArticleDetailModal } from './components/ArticleDetailModal';
 import { LoginView } from './components/LoginView';
 import { TeacherPortalView } from './components/TeacherPortalView';
+import { GovernmentPortalView } from './components/GovernmentPortalView';
 import { AiCounselingModal } from './components/AiCounselingModal';
+import { CaseTrackingView } from './components/CaseTrackingView';
 
 import {
   MOCK_ARTICLES,
@@ -28,7 +30,7 @@ export default function App() {
   const [currentUser, setCurrentUser] = useState<AppUser | null>(null);
 
   // Navigation View State
-  const [currentView, setCurrentView] = useState<'dashboard' | 'knowledge' | 'games'>('dashboard');
+  const [currentView, setCurrentView] = useState<'dashboard' | 'knowledge' | 'games' | 'tracking'>('dashboard');
 
   // Modals State
   const [isLaporModalOpen, setIsLaporModalOpen] = useState(false);
@@ -50,7 +52,7 @@ export default function App() {
     const studentName = currentUser?.name || 'Siswa';
     const newNotif: NotificationItem = {
       id: `notif-${Date.now()}`,
-      title: 'Waktunya Daily Mood Check',
+      title: 'Waktunya N-Mood',
       message: `Halo ${studentName}! Yuk luangkan 10 detik untuk mencatat perasaanmu hari ini di NABIS.`,
       time: 'Baru Saja',
       type: 'reminder',
@@ -60,7 +62,7 @@ export default function App() {
     setNotifications(prev => [newNotif, ...prev]);
     setActiveToast({
       title: 'Pengingat Check-in Harian NABIS',
-      msg: `Halo ${studentName}! Bagaimana perasaanmu hari ini? Luangkan 10 detik untuk Daily Mood Check.`,
+      msg: `Halo ${studentName}! Bagaimana perasaanmu hari ini? Luangkan 10 detik untuk N-Mood.`,
       time: 'Sekarang'
     });
 
@@ -165,6 +167,10 @@ export default function App() {
         ? `Berhasil masuk ke Portal Satgas TP2K Sekolah.`
         : user.role === 'government'
         ? `Berhasil masuk ke Portal Pemantauan Dinas Pendidikan.`
+        : user.role === 'ambassador'
+        ? `Berhasil masuk ke Portal Routes Ambassador Anti-Perundungan.`
+        : user.role === 'satgas'
+        ? `Berhasil masuk ke Portal Satgas PPKSP Kabupaten.`
         : `Berhasil masuk ke Portal Siswa NABIS.`,
       time: 'Baru Saja'
     });
@@ -182,7 +188,7 @@ export default function App() {
       nik: '3171000000000001',
       nisn: '1000000000',
       className: 'Dampingan BK',
-      schoolName: 'SMP Nusantara Jakarta',
+      schoolName: 'SMA Milbos Bogor',
       streakDays: 1
     };
     setCurrentUser(guestUser);
@@ -220,7 +226,7 @@ export default function App() {
           />
         </main>
         <footer className="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500">
-          <p className="font-bold text-sky-900">• NABIS — Portal Konselor Guru BK • SMP Nusantara Jakarta</p>
+          <p className="font-bold text-sky-900">• NABIS — Portal Konselor Guru BK • SMA Milbos Bogor</p>
         </footer>
       </div>
     );
@@ -270,8 +276,19 @@ export default function App() {
                 className="w-full py-2 bg-red-700 hover:bg-red-800 text-white font-bold text-xs rounded-xl transition-colors mt-1"
               >
                 Buat Lapor Aku Untuk Anak
-              </button>
-            </div>
+            </button>
+            <button
+              onClick={() => setCurrentView('tracking')}
+              className={`flex items-center justify-center gap-2 flex-1 sm:flex-none px-4 py-2 rounded-xl transition-all ${
+                currentView === 'tracking'
+                  ? 'bg-sky-900 text-white shadow-xs'
+                  : 'text-slate-600 hover:bg-sky-50'
+              }`}
+            >
+              <FileText className="w-4 h-4 shrink-0" />
+              <span>Lacak Kasus</span>
+            </button>
+          </div>
           </div>
         </main>
         <footer className="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500">
@@ -336,7 +353,7 @@ export default function App() {
   }
 
   // 4. GOVERNMENT / DINAS PORTAL
-  if (currentUser.role === 'government') {
+  if (currentUser.role === 'government' || currentUser.role === 'satgas') {
     return (
       <div className="min-h-screen bg-slate-50 font-sans text-slate-800 antialiased flex flex-col justify-between">
         <Header
@@ -348,37 +365,8 @@ export default function App() {
           currentUser={currentUser}
           onLogout={() => setCurrentUser(null)}
         />
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-1 py-8 space-y-6">
-          <div className="p-6 bg-white rounded-2xl border border-slate-200 shadow-xs space-y-3">
-            <span className="px-3 py-1 rounded-full bg-purple-100 text-purple-900 text-xs font-bold border border-purple-200">
-              Portal Pemantauan Dinas Pendidikan &amp; Pemerintah
-            </span>
-            <h2 className="text-2xl font-black text-slate-900">
-              Dasbor Agregat Wilayah &amp; Statistik Anti-Bullying
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-600">
-              Pengawasan makro kesehatan emosional siswa, indeks penanganan kasus sekolah, dan kepatuhan program TP2K.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-xs">
-              <p className="text-xs font-bold text-slate-500">• Total Sekolah Terintegrasi</p>
-              <h3 className="text-2xl font-black text-sky-900 mt-1">128 Sekolah</h3>
-            </div>
-            <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-xs">
-              <p className="text-xs font-bold text-slate-500">• Indeks Penyelesaian Kasus</p>
-              <h3 className="text-2xl font-black text-emerald-800 mt-1">94.2%</h3>
-            </div>
-            <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-xs">
-              <p className="text-xs font-bold text-slate-500">• Laporan Aktif Bulan Ini</p>
-              <h3 className="text-2xl font-black text-amber-800 mt-1">12 Kasus</h3>
-            </div>
-            <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-xs">
-              <p className="text-xs font-bold text-slate-500">• Partisipasi Daily Mood Check</p>
-              <h3 className="text-2xl font-black text-purple-900 mt-1">88.5%</h3>
-            </div>
-          </div>
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-1 pb-16">
+          <GovernmentPortalView />
         </main>
         <footer className="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500">
           <p className="font-bold text-sky-900">• NABIS — Portal Pengawasan Dinas Pendidikan &amp; Kebudayaan</p>
@@ -450,7 +438,7 @@ export default function App() {
               }`}
             >
               <Brain className="w-4 h-4 shrink-0" />
-              <span>Knowledge Check</span>
+              <span>N-Learn</span>
             </button>
             <button
               onClick={() => setCurrentView('games')}
@@ -461,7 +449,7 @@ export default function App() {
               }`}
             >
               <Gamepad2 className="w-4 h-4 shrink-0" />
-              <span>Anti Bullying Games</span>
+              <span>N-Play</span>
             </button>
           </div>
 
@@ -517,6 +505,10 @@ export default function App() {
 
         {currentView === 'games' && (
           <AntiBullyingGamesView onBackToDashboard={() => setCurrentView('dashboard')} />
+        )}
+
+        {currentView === 'tracking' && (
+          <CaseTrackingView reports={INITIAL_REPORTS} />
         )}
 
       </main>

@@ -49,7 +49,7 @@ export const FeatureGrid: React.FC<FeatureGridProps> = ({
             </div>
 
             <h3 className="text-lg font-bold text-sky-950 group-hover:text-sky-700 transition-colors">
-              Knowledge Check
+              N-Learn
             </h3>
             <p className="text-xs text-slate-600 mt-2 leading-relaxed">
               Uji pemahamanmu tentang mitos vs fakta perundungan, pelajari jenis-jenis bullying, dan kenali hak keamananmu sebagai siswa.
@@ -67,7 +67,7 @@ export const FeatureGrid: React.FC<FeatureGridProps> = ({
 
           <div className="mt-6">
             <button className="w-full py-3 px-4 rounded-xl bg-sky-50 group-hover:bg-sky-700 text-sky-800 group-hover:text-white font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-sm">
-              <span>Mulai Knowledge Check</span>
+              <span>Mulai N-Learn</span>
               <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
@@ -92,7 +92,7 @@ export const FeatureGrid: React.FC<FeatureGridProps> = ({
             </div>
 
             <h3 className="text-lg font-bold text-sky-950 group-hover:text-cyan-700 transition-colors">
-              Anti Bullying Games
+              N-Play
             </h3>
             <p className="text-xs text-slate-600 mt-2 leading-relaxed">
               Mainkan simulasi peran interaktif! Ambil keputusan tepat sebagai 'Upstander' pembela teman dan kumpulkan Poin Empati.

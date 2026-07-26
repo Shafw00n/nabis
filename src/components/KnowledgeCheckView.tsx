@@ -54,7 +54,7 @@ export const KnowledgeCheckView: React.FC<KnowledgeCheckViewProps> = ({ onBackTo
             <Brain className="w-6 h-6" />
           </div>
           <div>
-            <h2 className="text-xl sm:text-2xl font-extrabold text-sky-950">Knowledge Check: Anti-Bullying</h2>
+            <h2 className="text-xl sm:text-2xl font-extrabold text-sky-950">N-Learn: Anti-Bullying</h2>
             <p className="text-xs text-slate-500">Uji wawasanmu tentang perundungan & ketahui mitos vs fakta.</p>
           </div>
         </div>

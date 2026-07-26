@@ -65,7 +65,7 @@ export const NotificationSettingsModal: React.FC<NotificationSettingsModalProps>
             </div>
             <div>
               <h3 className="text-lg font-bold">Pengingat Jadwal Check-in Harian</h3>
-              <p className="text-xs text-sky-200 mt-0.5">Atur jam pengingat rutin Daily Mood Check NABIS</p>
+              <p className="text-xs text-sky-200 mt-0.5">Atur jam pengingat rutin N-Mood NABIS</p>
             </div>
           </div>
 

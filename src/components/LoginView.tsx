@@ -12,9 +12,11 @@ import {
   Building,
   CreditCard
 } from 'lucide-react';
-import { AppUser, UserRole, UserStudent, UserTeacher, UserParent, UserTP2K, UserGovernment } from '../types';
-import { DEMO_STUDENTS, DEMO_TEACHERS, DEMO_PARENTS, DEMO_TP2K, DEMO_GOVERNMENT } from '../data/mockData';
+import { AppUser, UserRole, UserStudent, UserTeacher, UserParent, UserTP2K, UserGovernment, UserAmbassador, UserSatgas } from '../types';
+import { DEMO_STUDENTS, DEMO_TEACHERS, DEMO_PARENTS, DEMO_TP2K, DEMO_GOVERNMENT, DEMO_AMBASSADORS, DEMO_SATGAS } from '../data/mockData';
 import { NabisLogoIcon } from './NabisLogo';
+import garudaLogo from '../assets/garuda.png';
+import dprRiLogo from '../assets/logo-dpr-ri.png';
 
 interface LoginViewProps {
   onLogin: (user: AppUser) => void;
@@ -47,10 +49,16 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
       setDynamicId('0082341234');
     } else if (role === 'tp2k') {
       setNik('3173014208820005');
-      setDynamicId('TP2K-SMPN1-001');
+      setDynamicId('TP2K-SMA-001');
     } else if (role === 'government') {
       setNik('3174011204720008');
       setDynamicId('DINAS-DKI-8821');
+    } else if (role === 'ambassador') {
+      setNik('3171011403080002');
+      setDynamicId('0082345679');
+    } else if (role === 'satgas') {
+      setNik('3201011505750001');
+      setDynamicId('SATGAS-PPKSP-KAB-001');
     }
   };
 
@@ -80,7 +88,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
           nik: nik.trim(),
           nisn: dynamicId.trim(),
           className: '8B',
-          schoolName: 'SMP Nusantara Jakarta',
+          schoolName: 'SMA Milbos Bogor',
           avatarUrl: '',
           streakDays: 5
         };
@@ -93,7 +101,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
           nik: nik.trim(),
           nip: dynamicId.trim(),
           roleTitle: 'Koordinator Bimbingan Konseling (BK)',
-          schoolName: 'SMP Nusantara Jakarta',
+          schoolName: 'SMA Milbos Bogor',
           avatarUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80'
         };
       } else if (selectedRole === 'parent') {
@@ -105,7 +113,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
           nik: nik.trim(),
           childNisn: dynamicId.trim(),
           childName: 'Aqeela Nahdasasfia (8B)',
-          schoolName: 'SMP Nusantara Jakarta',
+          schoolName: 'SMA Milbos Bogor',
           avatarUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80'
         };
       } else if (selectedRole === 'tp2k') {
@@ -117,10 +125,10 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
           nik: nik.trim(),
           institutionId: dynamicId.trim(),
           roleTitle: 'Ketua Tim TP2K Sekolah',
-          schoolName: 'SMP Nusantara Jakarta',
+          schoolName: 'SMA Milbos Bogor',
           avatarUrl: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80'
         };
-      } else {
+      } else if (selectedRole === 'government') {
         const found = DEMO_GOVERNMENT.find(g => g.nik === nik.trim());
         userToLogin = found || {
           id: `gov-${Date.now()}`,
@@ -128,9 +136,35 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
           name: 'Bapak Dr. H. Ahmad Fauzi, M.Si',
           nik: nik.trim(),
           institutionId: dynamicId.trim(),
-          roleTitle: 'Pengawas Sub-Dinas Pendidikan',
-          schoolName: 'Dinas Pendidikan DKI Jakarta',
+          roleTitle: 'Pengawas Dinas Pendidikan Kabupaten Bogor',
+          schoolName: 'Dinas Pendidikan Kabupaten Bogor',
           avatarUrl: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=200&q=80'
+        };
+      } else if (selectedRole === 'satgas') {
+        const found = DEMO_SATGAS.find(s => s.nik === nik.trim());
+        userToLogin = found || {
+          id: `sat-${Date.now()}`,
+          role: 'satgas',
+          name: 'Bapak H. Dedi Mulyadi, S.H.',
+          nik: nik.trim(),
+          institutionId: dynamicId.trim(),
+          roleTitle: 'Ketua Satgas PPKSP Kabupaten',
+          schoolName: 'Satgas PPKSP Kabupaten Bogor',
+          avatarUrl: ''
+        };
+      } else {
+        const found = DEMO_AMBASSADORS.find(a => a.nisn === dynamicId.trim() || a.nik === nik.trim());
+        userToLogin = found || {
+          id: `amb-${Date.now()}`,
+          role: 'ambassador',
+          name: 'Fajar Ramadhan',
+          nik: nik.trim(),
+          nisn: dynamicId.trim(),
+          roleTitle: 'Duta Anti-Perundungan',
+          className: '9B',
+          schoolName: 'SMA Milbos Bogor',
+          avatarUrl: '',
+          streakDays: 0
         };
       }
 
@@ -154,6 +188,8 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
       case 'parent': return 'Orang Tua';
       case 'tp2k': return 'Tim TP2K';
       case 'government': return 'Pemerintah / Dinas';
+      case 'ambassador': return 'Routes Ambassador';
+      case 'satgas': return 'Satgas PPKSP Kabupaten';
     }
   };
 
@@ -164,6 +200,8 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
       case 'parent': return 'Data 3: ID Anak / NISN Siswa';
       case 'tp2k': return 'Data 3: ID Reg. TP2K Sekolah';
       case 'government': return 'Data 3: NIP / ID Instansi Dinas';
+      case 'ambassador': return 'Data 3: NISN Routes Ambassador';
+      case 'satgas': return 'Data 3: ID Satgas PPKSP Kabupaten';
     }
   };
 
@@ -175,7 +213,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
       <div className="absolute -bottom-32 right-1/3 w-[28rem] h-[28rem] bg-blue-600/30 rounded-full blur-[120px] pointer-events-none" />
 
       {/* Top Bar Navigation */}
-      <header className="relative z-10 w-full bg-sky-950/80 backdrop-blur-md border-b border-sky-800/80">
+      <header className="relative z-10 w-full bg-transparent">
         <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-between">
           <div className="flex items-center space-x-1">
             <NabisLogoIcon className="w-10 h-10 sm:w-11 sm:h-11 shrink-0" />
@@ -187,6 +225,10 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
                 Platform Anti-Bullying Sekolah
               </span>
             </div>
+          </div>
+          <div className="flex items-center gap-3 mr-8 lg:mr-16">
+            <img src={garudaLogo} alt="Garuda Pancasila" className="h-8 sm:h-10 w-auto" />
+            <img src={dprRiLogo} alt="DPR RI" className="h-8 sm:h-10 w-auto" />
           </div>
         </div>
       </header>
@@ -215,7 +257,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-3">
             <div className="p-4 rounded-2xl bg-sky-950/70 backdrop-blur-md border border-sky-700/60 shadow-lg space-y-1.5 hover:border-cyan-400/80 transition-colors">
               <h4 className="text-sm font-extrabold text-cyan-300">• Preventif</h4>
-              <p className="text-xs text-sky-100 leading-normal">Daily Mood Check, Games, Knowledge Check &amp; Reward-Punishment.</p>
+              <p className="text-xs text-sky-100 leading-normal">N-Mood, N-Play, N-Learn &amp; N-Point.</p>
             </div>
             <div className="p-4 rounded-2xl bg-sky-950/70 backdrop-blur-md border border-sky-700/60 shadow-lg space-y-1.5 hover:border-cyan-400/80 transition-colors">
               <h4 className="text-sm font-extrabold text-cyan-300">• Detect</h4>
@@ -305,6 +347,8 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
                       <option value="parent" className="text-slate-900">Orang Tua (Monitoring Rapot &amp; Akses Kuratif)</option>
                       <option value="tp2k" className="text-slate-900">TP2K - Tim Pencegahan Kekerasan Sekolah</option>
                       <option value="government" className="text-slate-900">Pemerintah / Dinas Pendidikan</option>
+                      <option value="ambassador" className="text-slate-900">Routes Ambassador - Duta Anti-Perundungan</option>
+                      <option value="satgas" className="text-slate-900">Satgas PPKSP Kabupaten</option>
                     </select>
                   </div>
 
@@ -363,10 +407,21 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
                       className="w-full p-2.5 rounded-xl border border-slate-200 hover:border-sky-400 bg-slate-50 hover:bg-sky-50 transition-all flex items-center justify-between text-left"
                     >
                       <div>
-                        <h4 className="text-xs font-bold text-slate-900">• Siswa: Aqeela Nahdasasfia (8B)</h4>
+                        <h4 className="text-xs font-bold text-slate-900">• Aqeela Nahdasasfia (8B)</h4>
                         <p className="text-[10px] text-slate-500">NIK: 3171012304080001 • NISN: 0082341234</p>
                       </div>
                       <span className="text-xs font-bold px-2 py-0.5 rounded bg-sky-100 text-sky-800">Siswa</span>
+                    </button>
+
+                    <button
+                      onClick={() => handleQuickUserLogin(DEMO_AMBASSADORS[0])}
+                      className="w-full p-2.5 rounded-xl border border-slate-200 hover:border-sky-400 bg-slate-50 hover:bg-sky-50 transition-all flex items-center justify-between text-left"
+                    >
+                      <div>
+                        <h4 className="text-xs font-bold text-slate-900">• Fajar Ramadhan (9B)</h4>
+                        <p className="text-[10px] text-slate-500">Duta Anti-Perundungan - Pendampingan Siswa ke Siswa</p>
+                      </div>
+                      <span className="text-xs font-bold px-2 py-0.5 rounded bg-orange-100 text-orange-900">Routes Ambassador</span>
                     </button>
 
                     <button
@@ -374,7 +429,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
                       className="w-full p-2.5 rounded-xl border border-slate-200 hover:border-sky-400 bg-slate-50 hover:bg-sky-50 transition-all flex items-center justify-between text-left"
                     >
                       <div>
-                        <h4 className="text-xs font-bold text-slate-900">• Guru BK: Ibu Fitri Handayani, M.Pd</h4>
+                        <h4 className="text-xs font-bold text-slate-900">• Ibu Fitri Handayani, M.Pd</h4>
                         <p className="text-[10px] text-slate-500">NIK: 3172015203850001 • NIP: 198503122010012004</p>
                       </div>
                       <span className="text-xs font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-900">Guru BK</span>
@@ -385,7 +440,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
                       className="w-full p-2.5 rounded-xl border border-slate-200 hover:border-sky-400 bg-slate-50 hover:bg-sky-50 transition-all flex items-center justify-between text-left"
                     >
                       <div>
-                        <h4 className="text-xs font-bold text-slate-900">• Orang Tua: Bapak Hendra Santoso</h4>
+                        <h4 className="text-xs font-bold text-slate-900">• Bapak Hendra Santoso</h4>
                         <p className="text-[10px] text-slate-500">Orang Tua Siswa Aqeela Nahdasasfia (8B)</p>
                       </div>
                       <span className="text-xs font-bold px-2 py-0.5 rounded bg-cyan-100 text-cyan-900">Orang Tua</span>
@@ -396,7 +451,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
                       className="w-full p-2.5 rounded-xl border border-slate-200 hover:border-sky-400 bg-slate-50 hover:bg-sky-50 transition-all flex items-center justify-between text-left"
                     >
                       <div>
-                        <h4 className="text-xs font-bold text-slate-900">• TP2K: Ibu Ratna Dewi, S.Pd</h4>
+                        <h4 className="text-xs font-bold text-slate-900">• Ibu Ratna Dewi, S.Pd</h4>
                         <p className="text-[10px] text-slate-500">Ketua Tim Penanganan Kekerasan Sekolah</p>
                       </div>
                       <span className="text-xs font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-900">TP2K</span>
@@ -407,10 +462,21 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
                       className="w-full p-2.5 rounded-xl border border-slate-200 hover:border-sky-400 bg-slate-50 hover:bg-sky-50 transition-all flex items-center justify-between text-left"
                     >
                       <div>
-                        <h4 className="text-xs font-bold text-slate-900">• Pemerintah: Dr. H. Ahmad Fauzi</h4>
-                        <p className="text-[10px] text-slate-500">Pengawas Dinas Pendidikan DKI Jakarta</p>
+                        <h4 className="text-xs font-bold text-slate-900">• Dr. H. Ahmad Fauzi</h4>
+                        <p className="text-[10px] text-slate-500">Pengawas Dinas Pendidikan Kabupaten Bogor</p>
                       </div>
                       <span className="text-xs font-bold px-2 py-0.5 rounded bg-purple-100 text-purple-900">Dinas</span>
+                    </button>
+
+                    <button
+                      onClick={() => handleQuickUserLogin(DEMO_SATGAS[0])}
+                      className="w-full p-2.5 rounded-xl border border-slate-200 hover:border-sky-400 bg-slate-50 hover:bg-sky-50 transition-all flex items-center justify-between text-left"
+                    >
+                      <div>
+                        <h4 className="text-xs font-bold text-slate-900">• Bapak H. Dedi Mulyadi, S.H.</h4>
+                        <p className="text-[10px] text-slate-500">Ketua Satgas PPKSP Kabupaten Bogor</p>
+                      </div>
+                      <span className="text-xs font-bold px-2 py-0.5 rounded bg-indigo-100 text-indigo-900">Satgas</span>
                     </button>
                   </div>
                 </div>
@@ -419,7 +485,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
             </div>
 
             <div className="bg-slate-50 p-2 border-t border-slate-200 text-center text-[10px] text-slate-500 font-medium">
-              Sistem Terenkripsi NABIS • Hak Cipta © 2026 SMP Nusantara
+              Sistem Terenkripsi NABIS • Hak Cipta © 2026 SMA Milbos Bogor
             </div>
           </div>
         </div>

@@ -36,7 +36,7 @@ export const MoodRapotView: React.FC<MoodRapotViewProps> = ({ currentUser }) => 
       setRapot(prev => ({
         ...prev,
         lastUpdated: 'Baru Saja (24 Juli 2026)',
-        aiSummary: `Hasil Analisis AI Terbaru untuk ${currentUser.name}: Emosi siswa cenderung stabil di rata-rata skor ${prev.averageScore}/5. Terdeteksi adaptasi yang baik terhadap jadwal kelas 8B. Disarankan mempertahankan kebiasaan Daily Mood Check dan menyisipkan jeda istirahat ringan saat belajar.`,
+        aiSummary: `Hasil Analisis AI Terbaru untuk ${currentUser.name}: Emosi siswa cenderung stabil di rata-rata skor ${prev.averageScore}/5. Terdeteksi adaptasi yang baik terhadap jadwal kelas 8B. Disarankan mempertahankan kebiasaan N-Mood dan menyisipkan jeda istirahat ringan saat belajar.`,
       }));
     }, 1200);
   };
@@ -80,7 +80,7 @@ export const MoodRapotView: React.FC<MoodRapotViewProps> = ({ currentUser }) => 
               Mood Rapot: {currentUser.name}
             </h1>
             <p className="text-sky-200 text-xs sm:text-sm mt-1">
-              Periode {rapot.period} • Kelas {currentUser.className} • SMP Nusantara
+              Periode {rapot.period} • Kelas {currentUser.className} • SMA Milbos Bogor
             </p>
           </div>
 
@@ -107,7 +107,7 @@ export const MoodRapotView: React.FC<MoodRapotViewProps> = ({ currentUser }) => 
             <span className="text-xs font-bold uppercase tracking-wider text-slate-500">Status Kesejahteraan Emosional</span>
             <h3 className="text-lg font-bold mt-0.5">{rapot.levelTitle}</h3>
             <p className="text-xs text-slate-600 mt-1">
-              • Hasil evaluasi berdasarkan histori Daily Mood Check dan observasi emosional.
+              • Hasil evaluasi berdasarkan histori N-Mood dan observasi emosional.
             </p>
           </div>
         </div>

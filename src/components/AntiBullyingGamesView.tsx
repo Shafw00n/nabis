@@ -41,7 +41,7 @@ export const AntiBullyingGamesView: React.FC<AntiBullyingGamesViewProps> = ({ on
             <Gamepad2 className="w-6 h-6" />
           </div>
           <div>
-            <h2 className="text-xl sm:text-2xl font-extrabold text-sky-950">Anti Bullying Games: Empathy Quest</h2>
+            <h2 className="text-xl sm:text-2xl font-extrabold text-sky-950">N-Play: Empathy Quest</h2>
             <p className="text-xs text-slate-500">Mainkan simulasi peran & kumpulkan Poin Empati Upstander.</p>
           </div>
         </div>

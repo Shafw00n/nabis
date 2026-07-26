@@ -1,4 +1,4 @@
-export type UserRole = 'student' | 'teacher' | 'parent' | 'tp2k' | 'government';
+export type UserRole = 'student' | 'teacher' | 'parent' | 'tp2k' | 'government' | 'ambassador' | 'satgas';
 
 export type MoodLevel = 'sangat_baik' | 'baik' | 'biasa' | 'buruk' | 'sangat_buruk';
 
@@ -83,6 +83,25 @@ export interface GameScenario {
   }[];
 }
 
+export type CaseStage =
+  | 'reported'
+  | 'observation'
+  | 'assessment'
+  | 'investigation'
+  | 'intervention'
+  | 'satgas'
+  | 'recommendation'
+  | 'police';
+
+export interface StageInfo {
+  stage: CaseStage;
+  label: string;
+  completedAt?: string;
+  dueDays: number;
+  assignedTo: string;
+  notes?: string;
+}
+
 export interface IncidentReport {
   id: string;
   ticketNumber: string;
@@ -99,6 +118,22 @@ export interface IncidentReport {
   createdAt: string;
   responseNote?: string;
   assignedTeacher?: string;
+  // Case tracking fields
+  currentStage: CaseStage;
+  stages: StageInfo[];
+  deadline: string;
+  isUrgent?: boolean;
+  // File attachments
+  attachments?: { name: string; type: string; size: string }[];
+}
+
+export interface SchoolBullyingStat {
+  schoolName: string;
+  province: string;
+  totalCases: number;
+  activeCases: number;
+  resolvedCases: number;
+  avgResolutionDays: number;
 }
 
 export interface NotificationItem {
@@ -187,7 +222,31 @@ export interface UserGovernment {
   avatarUrl?: string;
 }
 
-export type AppUser = UserStudent | UserTeacher | UserParent | UserTP2K | UserGovernment;
+export interface UserAmbassador {
+  id: string;
+  role: 'ambassador';
+  name: string;
+  nik: string;
+  nisn: string;
+  roleTitle: string; // e.g. "Duta Anti-Perundungan"
+  className: string;
+  schoolName: string;
+  avatarUrl?: string;
+  streakDays: number;
+}
+
+export interface UserSatgas {
+  id: string;
+  role: 'satgas';
+  name: string;
+  nik: string;
+  institutionId: string;
+  roleTitle: string; // e.g. "Ketua Satgas PPKSP Kabupaten"
+  schoolName: string;
+  avatarUrl?: string;
+}
+
+export type AppUser = UserStudent | UserTeacher | UserParent | UserTP2K | UserGovernment | UserAmbassador | UserSatgas;
 
 
 
