@@ -1,6 +1,6 @@
 # 🛡️ NABIS (National Anti-Bullying Intelligence System)
 
-![Tampilan Antarmuka Login NABIS](image_2a48a8.jpg)
+![Tampilan Antarmuka Login NABIS](image_2a48a8.png)
 
 **NABIS** adalah platform sinergi perlindungan remaja, penanganan dini perundungan, deteksi dini Mood Rapot, serta sesi intervensi konseling aman dengan pemantauan yang transparan di lingkungan sekolah. 
 
