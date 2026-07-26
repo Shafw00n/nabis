@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { IncidentReport } from '../types';
-import { ShieldAlert, X, Send, Lock, EyeOff, FileText, PhoneCall, CheckCircle2, AlertTriangle, Clock, Paperclip, Check, Image, File } from 'lucide-react';
+import { IncidentReport, CaseStage } from '../types';
+import { ShieldAlert, X, Send, Lock, EyeOff, FileText, PhoneCall, CheckCircle2, AlertTriangle, Clock, Paperclip, Check, Image, File, Calendar, ChevronDown, ChevronUp } from 'lucide-react';
 
 interface LaporAkuModalProps {
   isOpen: boolean;
@@ -29,6 +29,36 @@ export const LaporAkuModal: React.FC<LaporAkuModalProps> = ({
   const [attachedFiles, setAttachedFiles] = useState<{ name: string; type: string; size: string }[]>([]);
   const [submittedSuccess, setSubmittedSuccess] = useState(false);
   const [createdTicket, setCreatedTicket] = useState('');
+  const [expandedTicket, setExpandedTicket] = useState<string | null>(null);
+
+  const STAGE_ICONS: Record<CaseStage, React.ReactNode> = {
+    reported: <FileText className="w-4 h-4" />,
+    observation: <FileText className="w-4 h-4" />,
+    assessment: <FileText className="w-4 h-4" />,
+    investigation: <FileText className="w-4 h-4" />,
+    intervention: <FileText className="w-4 h-4" />,
+    satgas: <FileText className="w-4 h-4" />,
+    recommendation: <FileText className="w-4 h-4" />,
+    police: <FileText className="w-4 h-4" />
+  };
+
+  const STAGE_COLORS: Record<CaseStage, { bg: string; text: string; border: string }> = {
+    reported: { bg: 'bg-blue-100', text: 'text-blue-700', border: 'border-blue-300' },
+    observation: { bg: 'bg-sky-100', text: 'text-sky-700', border: 'border-sky-300' },
+    assessment: { bg: 'bg-amber-100', text: 'text-amber-700', border: 'border-amber-300' },
+    investigation: { bg: 'bg-orange-100', text: 'text-orange-700', border: 'border-orange-300' },
+    intervention: { bg: 'bg-emerald-100', text: 'text-emerald-700', border: 'border-emerald-300' },
+    satgas: { bg: 'bg-purple-100', text: 'text-purple-700', border: 'border-purple-300' },
+    recommendation: { bg: 'bg-indigo-100', text: 'text-indigo-700', border: 'border-indigo-300' },
+    police: { bg: 'bg-red-100', text: 'text-red-700', border: 'border-red-300' }
+  };
+
+  const getDeadlineDays = (deadline: string) => {
+    const deadlineDate = new Date(deadline.split(' ')[0] + ', ' + deadline.split(' ').slice(1).join(' '));
+    const now = new Date();
+    const diffTime = deadlineDate.getTime() - now.getTime();
+    return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  };
 
   if (!isOpen) return null;
 
@@ -97,7 +127,7 @@ export const LaporAkuModal: React.FC<LaporAkuModalProps> = ({
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="text-xl font-extrabold tracking-tight">Lapor Aku NABIS</h3>
+                <h3 className="text-xl font-extrabold tracking-tight">N-Report NABIS</h3>
                 <span className="px-2 py-0.5 text-[10px] bg-white text-red-700 font-black rounded-md uppercase">
                   Aman & Rahasia
                 </span>
@@ -348,7 +378,7 @@ export const LaporAkuModal: React.FC<LaporAkuModalProps> = ({
                       className="w-full py-3.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-extrabold text-sm uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-red-500/20 transition-all"
                     >
                       <Send className="w-4 h-4" />
-                      <span>Kirim Laporan Rahasia "Lapor Aku"</span>
+                      <span>Kirim Laporan Rahasia "N-Report"</span>
                     </button>
                   </div>
 
@@ -362,69 +392,161 @@ export const LaporAkuModal: React.FC<LaporAkuModalProps> = ({
             <div className="space-y-4">
               <h4 className="text-sm font-bold text-slate-800 flex items-center gap-2">
                 <FileText className="w-4 h-4 text-sky-600" />
-                Daftar Laporan yang Telah Terkirim ({reports.length})
+                Pelacakan Tahapan Laporan ({reports.length})
               </h4>
 
               {reports.length === 0 ? (
                 <p className="text-center py-10 text-xs text-slate-400">Belum ada laporan yang dikirim.</p>
               ) : (
-                reports.map((rep) => (
-                  <div key={rep.id} className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-slate-200">
-                      <div>
-                        <span className="text-xs font-extrabold text-sky-800">{rep.ticketNumber}</span>
-                        <span className="ml-2 text-[10px] text-slate-400">({rep.createdAt})</span>
-                      </div>
-                      <span className={`px-2.5 py-1 text-[10px] font-black rounded-full ${
-                        rep.status === 'Selesai Dampak Positif'
-                          ? 'bg-emerald-100 text-emerald-800 border border-emerald-300'
-                          : rep.status === 'Dalam Penanganan'
-                          ? 'bg-amber-100 text-amber-900 border border-amber-300'
-                          : 'bg-sky-100 text-sky-800 border border-sky-300'
-                      }`}>
-                        {rep.status}
-                      </span>
-                    </div>
+                reports.map((rep) => {
+                  const currentIdx = rep.stages
+                    ? rep.stages.findIndex(s => s.stage === rep.currentStage)
+                    : 0;
+                  const isExpanded = expandedTicket === rep.ticketNumber;
 
-                    <div className="text-xs space-y-1">
-                      <p className="font-bold text-slate-800">
-                        Kategori: <span className="text-red-700">{rep.incidentType}</span> • Lokasi: {rep.location}
-                      </p>
-                      <p className="text-slate-600 italic">"{rep.description}"</p>
-                    </div>
-
-                    {rep.responseNote && (
-                      <div className="p-3 rounded-xl bg-sky-100/70 border border-sky-200 text-xs text-sky-900 flex items-start gap-2">
-                        <Clock className="w-4 h-4 text-sky-700 shrink-0 mt-0.5" />
+                  return (
+                    <div key={rep.id} className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
+                      {/* Header */}
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-slate-200">
                         <div>
-                          <p className="font-bold text-[11px] text-sky-950">Catatan Tindak Lanjut Konselor BK:</p>
-                          <p className="text-[11px] text-sky-800 mt-0.5">{rep.responseNote}</p>
+                          <span className="text-xs font-extrabold text-sky-800">{rep.ticketNumber}</span>
+                          <span className="ml-2 text-[10px] text-slate-400">({rep.createdAt})</span>
                         </div>
+                        <span className={`px-2.5 py-1 text-[10px] font-black rounded-full ${
+                          rep.status === 'Selesai Dampak Positif'
+                            ? 'bg-emerald-100 text-emerald-800 border border-emerald-300'
+                            : rep.status === 'Dalam Penanganan'
+                            ? 'bg-amber-100 text-amber-900 border border-amber-300'
+                            : 'bg-sky-100 text-sky-800 border border-sky-300'
+                        }`}>
+                          {rep.status}
+                        </span>
                       </div>
-                    )}
 
-                    {rep.attachments && rep.attachments.length > 0 && (
-                      <div className="p-3 rounded-xl bg-purple-50 border border-purple-200 text-xs">
-                        <p className="font-bold text-[11px] text-purple-900 flex items-center gap-1.5 mb-1.5">
-                          <Paperclip className="w-3.5 h-3.5" /> Bukti Lampiran ({rep.attachments.length})
-                        </p>
-                        <div className="space-y-1">
-                          {rep.attachments.map((att, idx) => (
-                            <div key={idx} className="flex items-center gap-2 text-purple-800">
-                              {att.type.includes('image') ? (
-                                <Image className="w-3.5 h-3.5 shrink-0" />
-                              ) : (
-                                <File className="w-3.5 h-3.5 shrink-0" />
-                              )}
-                              <span className="truncate">{att.name}</span>
-                              <span className="text-purple-400 text-[9px] shrink-0">{att.size}</span>
-                            </div>
-                          ))}
+                      {/* Deadline */}
+                      {rep.deadline && (
+                        <div className={`p-2 rounded-xl flex items-center gap-2 ${
+                          getDeadlineDays(rep.deadline) <= 7 ? 'bg-red-50 border border-red-200' : 'bg-sky-50 border border-sky-200'
+                        }`}>
+                          <Calendar className={`w-4 h-4 ${getDeadlineDays(rep.deadline) <= 7 ? 'text-red-600' : 'text-sky-600'}`} />
+                          <div className="flex-1">
+                            <p className={`text-[11px] font-bold ${getDeadlineDays(rep.deadline) <= 7 ? 'text-red-800' : 'text-sky-800'}`}>
+                              Batas akhir: {rep.deadline}
+                            </p>
+                            <p className={`text-[10px] ${getDeadlineDays(rep.deadline) <= 7 ? 'text-red-600' : 'text-sky-600'}`}>
+                              {getDeadlineDays(rep.deadline) <= 7 ? `⚡ ${getDeadlineDays(rep.deadline)} hari lagi` : `Sisa ${getDeadlineDays(rep.deadline)} hari`}
+                            </p>
+                          </div>
                         </div>
+                      )}
+
+                      {/* Phase Timeline */}
+                      {rep.stages && rep.stages.length > 0 && (
+                        <div className="relative pl-1">
+                          {rep.stages.map((stageInfo, idx) => {
+                            const isCompleted = idx < currentIdx;
+                            const isActive = idx === currentIdx;
+                            const isLast = idx === rep.stages!.length - 1;
+                            const color = STAGE_COLORS[stageInfo.stage];
+
+                            return (
+                              <div key={stageInfo.stage} className="flex gap-3 pb-3 last:pb-0 relative">
+                                {/* Connecting line */}
+                                {!isLast && (
+                                  <div className={`absolute left-[15px] top-8 w-0.5 h-full -translate-x-1/2 ${
+                                    isCompleted ? 'bg-emerald-400' : isActive ? 'bg-sky-400' : 'bg-slate-200'
+                                  }`} />
+                                )}
+
+                                {/* Icon circle */}
+                                <div className={`relative z-10 w-8 h-8 rounded-full flex items-center justify-center shrink-0 border-2 ${
+                                  isCompleted ? 'bg-emerald-500 border-emerald-500 text-white' :
+                                  isActive ? 'bg-sky-500 border-sky-500 text-white animate-pulse' :
+                                  'bg-white border-slate-300 text-slate-400'
+                                }`}>
+                                  {isCompleted ? <Check className="w-4 h-4" /> : STAGE_ICONS[stageInfo.stage]}
+                                </div>
+
+                                {/* Content */}
+                                <div className="flex-1 min-w-0 pt-0.5">
+                                  <div className="flex items-center gap-1.5">
+                                    <h5 className={`font-bold text-[11px] ${
+                                      isCompleted ? 'text-emerald-700' : isActive ? 'text-sky-900' : 'text-slate-400'
+                                    }`}>
+                                      {stageInfo.label}
+                                    </h5>
+                                    {isActive && (
+                                      <span className="px-1.5 py-0.5 rounded-full bg-sky-100 text-sky-800 text-[9px] font-bold">
+                                        Proses
+                                      </span>
+                                    )}
+                                  </div>
+                                  <p className={`text-[10px] mt-0.5 ${isCompleted ? 'text-emerald-600' : isActive ? 'text-sky-600' : 'text-slate-400'}`}>
+                                    {stageInfo.description}
+                                  </p>
+                                  {stageInfo.completedAt && (
+                                    <p className="text-[9px] text-slate-400 mt-0.5">Selesai: {stageInfo.completedAt}</p>
+                                  )}
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      )}
+
+                      {/* Expand Details */}
+                      <div className="pt-2 border-t border-slate-200">
+                        <button
+                          onClick={() => setExpandedTicket(isExpanded ? null : rep.ticketNumber)}
+                          className="flex items-center gap-1.5 text-[11px] font-bold text-sky-700 hover:text-sky-900 transition-colors"
+                        >
+                          {isExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                          {isExpanded ? 'Sembunyikan' : 'Detail Lengkap'}
+                        </button>
+
+                        {isExpanded && (
+                          <div className="mt-2 space-y-2 text-[11px] text-slate-600">
+                            <p className="font-bold text-slate-800">
+                              Kategori: <span className="text-red-700">{rep.incidentType}</span> • Lokasi: {rep.location}
+                            </p>
+                            <p className="italic">"{rep.description}"</p>
+
+                            {rep.responseNote && (
+                              <div className="p-2.5 rounded-xl bg-sky-100/70 border border-sky-200 text-sky-900 flex items-start gap-2">
+                                <Clock className="w-3.5 h-3.5 text-sky-700 shrink-0 mt-0.5" />
+                                <div>
+                                  <p className="font-bold text-[10px] text-sky-950">Catatan Guru BK:</p>
+                                  <p className="text-[10px] text-sky-800 mt-0.5">{rep.responseNote}</p>
+                                </div>
+                              </div>
+                            )}
+
+                            {rep.attachments && rep.attachments.length > 0 && (
+                              <div className="p-2.5 rounded-xl bg-purple-50 border border-purple-200">
+                                <p className="font-bold text-[10px] text-purple-900 flex items-center gap-1.5 mb-1">
+                                  <Paperclip className="w-3 h-3" /> Bukti Lampiran ({rep.attachments.length})
+                                </p>
+                                <div className="space-y-1">
+                                  {rep.attachments.map((att, idx) => (
+                                    <div key={idx} className="flex items-center gap-2 text-purple-800 text-[10px]">
+                                      {att.type.includes('image') ? (
+                                        <Image className="w-3 h-3 shrink-0" />
+                                      ) : (
+                                        <File className="w-3 h-3 shrink-0" />
+                                      )}
+                                      <span className="truncate">{att.name}</span>
+                                      <span className="text-purple-400 text-[9px] shrink-0">{att.size}</span>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        )}
                       </div>
-                    )}
-                  </div>
-                ))
+                    </div>
+                  );
+                })
               )}
             </div>
           )}

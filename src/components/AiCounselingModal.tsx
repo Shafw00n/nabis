@@ -74,7 +74,7 @@ export const AiCounselingModal: React.FC<AiCounselingModalProps> = ({
       if (userText.toLowerCase().includes('diejek') || userText.toLowerCase().includes('verbal')) {
         reply = `Menghadapi ejekan verbal memang menyakitkan. Langkah aman: Tetap tenang, hindari membalas dengan emosi, catat ucapan pelaku, dan beri tahu Guru BK.`;
       } else if (userText.toLowerCase().includes('ancam') || userText.toLowerCase().includes('pukul') || userText.toLowerCase().includes('fisik')) {
-        reply = `Tindakan fisik atau ancaman adalah pelanggaran berat. Harap pertimbangkan untuk menekan tombol 'Lapor Aku' agar Tim TP2K dan Guru BK segera melindungimu.`;
+        reply = `Tindakan fisik atau ancaman adalah pelanggaran berat. Harap pertimbangkan untuk menekan tombol 'N-Report' agar Tim TP2K dan Guru BK segera melindungimu.`;
       } else if (userText.toLowerCase().includes('takut') || userText.toLowerCase().includes('cemas')) {
         reply = `Perasaan takut itu wajar. Kamu tidak sendirian. Mari coba latihan napas dalam 4-7-8, dan ingat kamu bisa mengontak Psikolog atau Guru BK di tab 'Kontak Profesional'.`;
       }
@@ -360,7 +360,7 @@ export const AiCounselingModal: React.FC<AiCounselingModalProps> = ({
                   Protokol Bukti Digital &amp; Pengamanan Akun
                 </h4>
                 <p className="text-xs text-slate-600 leading-relaxed">
-                  1. Tangkap layar (screenshot) pesan berisi hinaan. 2. Jangan membalas di kolom komentar. 3. Blokir akun pelaku. 4. Lampirkan tangkapan layar ke fitur Lapor Aku.
+                  1. Tangkap layar (screenshot) pesan berisi hinaan. 2. Jangan membalas di kolom komentar. 3. Blokir akun pelaku. 4. Lampirkan tangkapan layar ke fitur N-Report.
                 </p>
                 <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px]">
                   <span className="font-bold text-sky-900">• Panduan Resmi Satgas TP2K</span>

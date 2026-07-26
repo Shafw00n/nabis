@@ -235,7 +235,7 @@ export const DailyMoodCheck: React.FC<DailyMoodCheckProps> = ({
                       onClick={onOpenLaporModal}
                       className="px-3.5 py-2 bg-red-700 hover:bg-red-800 text-white text-xs font-bold rounded-xl transition-colors whitespace-nowrap"
                     >
-                      Buat Lapor Aku
+                      Buat N-Report
                     </button>
                   </div>
                 </div>

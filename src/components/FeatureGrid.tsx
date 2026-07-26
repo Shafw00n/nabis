@@ -116,7 +116,7 @@ export const FeatureGrid: React.FC<FeatureGridProps> = ({
           </div>
         </div>
 
-        {/* CARD 3: TOMBOL MERAH MENONJOL "LAPOR AKU" */}
+        {/* CARD 3: TOMBOL MERAH MENONJOL "N-REPORT" */}
         <div
           onClick={onOpenLaporModal}
           className="group cursor-pointer bg-gradient-to-br from-red-600 via-red-600 to-rose-700 rounded-3xl p-6 border-2 border-red-500 hover:border-red-300 shadow-2xl shadow-red-600/30 hover:shadow-red-600/50 transition-all duration-300 flex flex-col justify-between transform hover:-translate-y-1 relative overflow-hidden ring-4 ring-red-100"
@@ -135,7 +135,7 @@ export const FeatureGrid: React.FC<FeatureGridProps> = ({
             </div>
 
             <h3 className="text-xl font-extrabold text-white tracking-tight flex items-center gap-2">
-              Lapor Aku <span className="text-xs font-semibold px-2 py-0.5 rounded bg-red-800/80 text-red-100">SOS</span>
+              N-Report <span className="text-xs font-semibold px-2 py-0.5 rounded bg-red-800/80 text-red-100">SOS</span>
             </h3>
             <p className="text-xs text-red-100 mt-2 leading-relaxed">
               Kirim laporan perundungan secara 100% anonim atau rahasia. Tim Bimbingan Konseling (BK) akan segera mendampingi.
@@ -154,7 +154,7 @@ export const FeatureGrid: React.FC<FeatureGridProps> = ({
           <div className="mt-6">
             <button className="w-full py-3.5 px-4 rounded-xl bg-white hover:bg-red-50 text-red-700 font-extrabold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-md group-hover:scale-[1.02]">
               <ShieldAlert className="w-4 h-4 text-red-600" />
-              <span>Buka Lapor Aku Sekarang</span>
+              <span>Buka N-Report Sekarang</span>
             </button>
           </div>
         </div>

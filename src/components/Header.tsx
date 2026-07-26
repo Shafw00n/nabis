@@ -28,6 +28,59 @@ export const Header: React.FC<HeaderProps> = ({
 
   const isTeacher = currentUser?.role === 'teacher';
   const isAmbassador = currentUser?.role === 'ambassador';
+  const isGovernment = currentUser?.role === 'government';
+  const isParent = currentUser?.role === 'parent';
+  const isStudent = currentUser?.role === 'student';
+
+  const roleBadgeLabel = isTeacher
+    ? 'Portal Guru BK'
+    : isAmbassador
+      ? 'Routes Ambassador'
+      : isGovernment
+        ? 'Portal Pemerintah'
+        : isParent
+          ? 'Portal Orang Tua'
+          : 'Siswa Active';
+
+  const roleBadgeStyle = isTeacher
+    ? 'bg-amber-100 text-amber-900 border-amber-300'
+    : isAmbassador
+      ? 'bg-orange-100 text-orange-900 border-orange-300'
+      : isGovernment
+        ? 'bg-purple-100 text-purple-900 border-purple-300'
+        : isParent
+          ? 'bg-teal-100 text-teal-900 border-teal-300'
+          : 'bg-sky-100 text-sky-900 border-sky-200';
+
+  const roleProfileStyle = isTeacher
+    ? 'bg-amber-50 text-amber-900 border-amber-200'
+    : isAmbassador
+      ? 'bg-orange-50 text-orange-900 border-orange-200'
+      : isGovernment
+        ? 'bg-purple-50 text-purple-900 border-purple-200'
+        : isParent
+          ? 'bg-teal-50 text-teal-900 border-teal-200'
+          : 'bg-sky-50 text-sky-900 border-sky-200';
+
+  const roleProfileLabel = isTeacher
+    ? 'Konselor BK Sekolah'
+    : isAmbassador
+      ? 'Routes Ambassador - Duta Anti-Perundungan'
+      : isGovernment
+        ? 'Dinas Pendidikan'
+        : isParent
+          ? 'Orang Tua / Wali'
+          : `Siswa Terdaftar • Kelas ${(currentUser as any)?.className}`;
+
+  const logoutLabel = isTeacher
+    ? 'Keluar Portal Guru BK'
+    : isAmbassador
+      ? 'Keluar Routes Ambassador'
+      : isGovernment
+        ? 'Keluar Portal Pemerintah'
+        : isParent
+          ? 'Keluar Portal Orang Tua'
+          : 'Keluar / Ganti Akun Siswa';
 
   return (
     <header className="sticky top-0 z-40 bg-white backdrop-blur-md border-b border-sky-100 shadow-sm text-sky-900 transition-all">
@@ -41,14 +94,8 @@ export const Header: React.FC<HeaderProps> = ({
               <span className="font-black text-xl sm:text-2xl tracking-tight text-sky-950 font-sans">
                 NABIS
               </span>
-              <span className={`hidden sm:inline-block px-2.5 py-0.5 text-xs font-bold rounded-full border ${
-                isTeacher 
-                  ? 'bg-amber-100 text-amber-900 border-amber-300' 
-                  : isAmbassador
-                    ? 'bg-orange-100 text-orange-900 border-orange-300'
-                    : 'bg-sky-100 text-sky-900 border-sky-200'
-              }`}>
-                {isTeacher ? 'Portal Guru BK' : isAmbassador ? 'Routes Ambassador' : 'Siswa Active'}
+              <span className={`hidden sm:inline-block px-2.5 py-0.5 text-xs font-bold rounded-full border ${roleBadgeStyle}`}>
+                {roleBadgeLabel}
               </span>
             </div>
             <p className="hidden sm:block text-[11px] sm:text-xs text-slate-500 font-medium">
@@ -61,7 +108,7 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="flex items-center gap-2 sm:gap-3">
           
           {/* Daily Reminder Quick Pill (Student view only) */}
-          {!isTeacher && (
+          {isStudent && (
             <button
               onClick={onOpenReminderModal}
               className={`hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold border transition-all ${
@@ -133,7 +180,7 @@ export const Header: React.FC<HeaderProps> = ({
                   )}
                 </div>
 
-                {!isTeacher && (
+                {isStudent && (
                   <div className="px-4 pt-2 border-t border-slate-100 flex justify-between items-center bg-slate-50/50 rounded-b-2xl">
                     <button
                       onClick={() => {
@@ -150,14 +197,14 @@ export const Header: React.FC<HeaderProps> = ({
             )}
           </div>
 
-          {/* Prominent Red Emergency Button "Lapor Aku" in Header (Student View only) */}
-          {!isTeacher && (
+          {/* Prominent Red Emergency Button "N-Report" in Header (Student View only) */}
+          {isStudent && (
             <button
               onClick={onOpenLaporModal}
               className="flex items-center gap-1.5 px-2.5 py-1.5 sm:px-4 sm:py-2.5 rounded-xl bg-red-700 hover:bg-red-800 text-white font-bold text-xs sm:text-sm shadow-xs transition-all transform hover:-translate-y-0.5 border border-red-600"
             >
               <ShieldAlert className="w-4 h-4 sm:w-5 sm:h-5" />
-              <span className="tracking-wide uppercase font-black">Lapor Aku</span>
+              <span className="tracking-wide uppercase font-black">N-Report</span>
             </button>
           )}
 
@@ -183,9 +230,13 @@ export const Header: React.FC<HeaderProps> = ({
                   {currentUser?.name || 'Pengguna'}
                 </p>
                 <p className="text-[10px] text-slate-500 leading-tight mt-0.5">
-                  {isTeacher 
+                  {isTeacher
                     ? `NIP. ${(currentUser as any)?.nip || '198503122010012004'}`
-                    : `Kelas ${(currentUser as any)?.className || '8B'} • NISN ${(currentUser as any)?.nisn || '0082341234'}`
+                    : isAmbassador
+                      ? `NISN ${(currentUser as any)?.nisn || '0082345679'} • Duta`
+                      : isStudent
+                        ? `Kelas ${(currentUser as any)?.className || '8B'} • NISN ${(currentUser as any)?.nisn || '0082341234'}`
+                        : currentUser?.roleTitle || 'Pengguna NABIS'
                   }
                 </p>
               </div>
@@ -197,14 +248,8 @@ export const Header: React.FC<HeaderProps> = ({
                 <div className="px-4 pb-3 border-b border-slate-100">
                   <p className="text-xs font-bold text-slate-900">{currentUser?.name}</p>
                   <p className="text-[11px] text-slate-500">{currentUser?.schoolName || 'SMA Milbos Bogor'}</p>
-                  <div className={`mt-2 inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold border ${
-                    isTeacher
-                      ? 'bg-amber-50 text-amber-900 border-amber-200'
-                      : isAmbassador
-                        ? 'bg-orange-50 text-orange-900 border-orange-200'
-                        : 'bg-sky-50 text-sky-900 border-sky-200'
-                  }`}>
-                    {isTeacher ? 'Konselor BK Sekolah' : isAmbassador ? 'Routes Ambassador - Duta Anti-Perundungan' : `Siswa Terdaftar • Kelas ${(currentUser as any)?.className}`}
+                  <div className={`mt-2 inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold border ${roleProfileStyle}`}>
+                    {roleProfileLabel}
                   </div>
                 </div>
 
@@ -218,7 +263,7 @@ export const Header: React.FC<HeaderProps> = ({
                       className="w-full flex items-center gap-2 px-3 py-2 text-xs font-bold text-red-700 hover:bg-red-50 rounded-xl transition-colors"
                     >
                       <LogOut className="w-4 h-4 text-red-600" />
-                      <span>{isTeacher ? 'Keluar Portal Guru BK' : 'Keluar / Ganti Akun Siswa'}</span>
+                      <span>{logoutLabel}</span>
                     </button>
                   )}
                 </div>

@@ -82,7 +82,7 @@ export const DEMO_AMBASSADORS: UserAmbassador[] = [
     roleTitle: 'Duta Anti-Perundungan',
     className: '9B',
     schoolName: 'SMA Milbos Bogor',
-    avatarUrl: 'https://images.unsplash.com/photo-1599566150163-29194dcabd9c?auto=format&fit=crop&w=200&q=80',
+    avatarUrl: '',
     streakDays: 14
   }
 ];
@@ -223,7 +223,7 @@ export const MOOD_OPTIONS: MoodOption[] = [
     borderColor: 'border-red-300 hover:border-red-500',
     textColor: 'text-red-900',
     description: 'Sangat sedih, takut, atau terancam',
-    supportMsg: 'Kamu aman di sini. Kami sangat peduli padamu. Jika kamu mengalami atau melihat perundungan, klik tombol Lapor Aku atau hubungi Konselor Sekolah sekarang.'
+    supportMsg: 'Kamu aman di sini. Kami sangat peduli padamu. Jika kamu mengalami atau melihat perundungan, klik tombol N-Report atau hubungi Konselor Sekolah sekarang.'
   }
 ];
 
@@ -323,7 +323,7 @@ export const MOCK_ARTICLES: Article[] = [
       'Gunakan metode 5D berbasis penelitian psikologi pendidikan:',
       '• Direct (Tegur Langsung): Katakan dengan tenang namun tegas: "Hentikan, itu tidak lucu dan melanggar aturan."',
       '• Distract (Alihkan Perhatian): Ajak korban mengobrol topik lain, atau panggil untuk tugas guru.',
-      '• Delegate (Minta Bantuan): Hubungi Wali Kelas, Guru BK, atau gunakan tombol Lapor Aku.',
+      '• Delegate (Minta Bantuan): Hubungi Wali Kelas, Guru BK, atau gunakan tombol N-Report.',
       '• Delay (Dampingi Setelahnya): Temui korban setelah kejadian dan tunjukkan dukungan penuh.',
       '• Document (Catat Bukti): Catat tanggal, lokasi, dan saksi untuk pelaporan resmi.'
     ],
@@ -399,7 +399,7 @@ export const MOCK_QUIZ: QuizQuestion[] = [
   {
     id: 2,
     type: 'myth_fact',
-    question: 'Mitos atau Fakta: Fitur Lapor Aku di NABIS menjamin privasi dan kerahasiaan identitas pelapor 100%.',
+    question: 'Mitos atau Fakta: Fitur N-Report di NABIS menjamin privasi dan kerahasiaan identitas pelapor 100%.',
     statement: 'Laporan di NABIS dijamin rahasia.',
     correctAnswer: true, // FAKTA
     explanation: 'FAKTA! Sistem dirancang terenkripsi untuk melindungi pelapor agar merasa aman saat menyuarakan kebenaran.',
@@ -449,7 +449,7 @@ export const MOCK_GAMES: GameScenario[] = [
       },
       {
         id: 'c3',
-        text: 'Melaporkan kejadian secara langsung ke Ruang BK atau melalui tombol Lapor Aku.',
+        text: 'Melaporkan kejadian secara langsung ke Ruang BK atau melalui tombol N-Report.',
         isUpstander: true,
         feedback: 'Bagus Sekali! Melaporkan ke pendamping BK adalah langkah teratur dan aman.',
         points: 90

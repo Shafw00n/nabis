@@ -168,7 +168,7 @@ export const TeacherPortalView: React.FC<TeacherPortalViewProps> = ({
             }`}
           >
             <FileText className="w-4 h-4" />
-            <span>Manajemen Laporan Lapor Aku</span>
+            <span>Manajemen Laporan N-Report</span>
             <span className="ml-1 px-1.5 py-0.2 rounded bg-sky-100 text-sky-900 text-[10px] font-bold">
               {reports.length}
             </span>
@@ -260,7 +260,7 @@ export const TeacherPortalView: React.FC<TeacherPortalViewProps> = ({
           <div className="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
             <div className="p-4 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
               <h3 className="text-xs sm:text-sm font-bold text-slate-800">
-                Daftar Tiket Masuk Lapor Aku ({filteredReports.length} Laporan)
+                Daftar Tiket Masuk N-Report ({filteredReports.length} Laporan)
               </h3>
               <span className="text-xs text-slate-500">Privasi Terjaga Terenkripsi</span>
             </div>
