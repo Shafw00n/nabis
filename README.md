@@ -8,7 +8,7 @@ Proyek ini dibangun untuk memberikan ruang aman bagi siswa, sekaligus memberikan
 
 ---
 
-## ✨ Fitur Utama
+## Fitur Utama
 
 Sistem ini membagi pendekatannya menjadi tiga pilar utama:
 
@@ -32,7 +32,7 @@ Sistem pelaporan dan pemulihan.
 
 ---
 
-## 🔐 Sistem Autentikasi (3-Data Login)
+## Sistem Autentikasi (3-Data Login)
 
 Sistem login NABIS dirancang dengan keamanan berlapis untuk membedakan hak akses masing-masing peran, membutuhkan:
 1.  **NIK** (Nomor Induk Kependudukan - 16 Digit)
@@ -41,7 +41,7 @@ Sistem login NABIS dirancang dengan keamanan berlapis untuk membedakan hak akses
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 Aplikasi ini dikembangkan menggunakan teknologi *frontend* modern:
 *   **Framework:** React (Vite)
@@ -51,7 +51,7 @@ Aplikasi ini dikembangkan menggunakan teknologi *frontend* modern:
 
 ---
 
-## 🚀 Cara Menjalankan Proyek secara Lokal
+## Cara Menjalankan Proyek secara Lokal
 
 Jika Anda ingin menjalankan atau mengembangkan proyek ini di komputer lokal, ikuti langkah-langkah berikut:
 
