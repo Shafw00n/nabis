@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { ShieldAlert, Bell, Clock, User, CheckCircle2, LogOut, GraduationCap, ShieldCheck } from 'lucide-react';
+import { createPortal } from 'react-dom';
+import { ShieldAlert, Bell, Clock, User, CheckCircle2, LogOut, X } from 'lucide-react';
 import { NotificationItem, ReminderSettings, AppUser } from '../types';
 import { NabisLogoIcon } from './NabisLogo';
 
@@ -85,7 +86,7 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <header className="sticky top-0 z-40 bg-white backdrop-blur-md border-b border-sky-100 shadow-sm text-sky-900 transition-all pt-[env(safe-area-inset-top,0px)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-4">
-        
+
         {/* Logo & Brand */}
         <div className="flex items-center gap-3">
           <NabisLogoIcon className="w-9 h-9 sm:w-11 sm:h-11 shrink-0" />
@@ -106,7 +107,7 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Right Action Tools */}
         <div className="flex items-center gap-2 sm:gap-3">
-          
+
           {/* Daily Reminder Quick Pill (Student view only) */}
           {isStudent && (
             <button
@@ -126,7 +127,7 @@ export const Header: React.FC<HeaderProps> = ({
             </button>
           )}
 
-          {/* Notifications Trigger */}
+          {/* Notifications Trigger (dropdown-nya sekarang di-portal, lihat NotificationPanel di bawah) */}
           <div className="relative shrink-0">
             <button
               onClick={() => setShowNotifDropdown(!showNotifDropdown)}
@@ -140,61 +141,6 @@ export const Header: React.FC<HeaderProps> = ({
                 </span>
               )}
             </button>
-
-            {/* Notification Dropdown */}
-            {showNotifDropdown && (
-              <div className="absolute top-full right-0 mt-2 w-[min(360px,calc(100vw-32px))] sm:w-96 bg-white rounded-2xl shadow-xl border border-slate-200 py-3 z-50 animate-in fade-in zoom-in-95 duration-150 overflow-hidden">
-                <div className="px-4 pb-2 border-b border-slate-100 flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Bell className="w-4 h-4 text-sky-800" />
-                    <h3 className="font-bold text-slate-800 text-sm">Notifikasi &amp; Pembaruan</h3>
-                  </div>
-                  {unreadCount > 0 && (
-                    <button
-                      onClick={onMarkAllRead}
-                      className="text-xs text-sky-800 hover:text-sky-950 font-bold flex items-center gap-1 min-h-[44px] px-2"
-                    >
-                      <CheckCircle2 className="w-3.5 h-3.5 shrink-0" /> Tandai Dibaca
-                    </button>
-                  )}
-                </div>
-
-                <div className="max-h-80 overflow-y-auto ios-touch-scroll divide-y divide-slate-100">
-                  {notifications.length === 0 ? (
-                    <p className="text-center py-6 text-xs text-slate-400">Belum ada notifikasi baru</p>
-                  ) : (
-                    notifications.map((n) => (
-                      <div
-                        key={n.id}
-                        className={`p-3.5 text-xs transition-colors hover:bg-slate-50 ${
-                          !n.read ? 'bg-sky-50/60 font-medium' : 'bg-white'
-                        }`}
-                      >
-                        <div className="flex justify-between items-start mb-1">
-                          <span className="font-bold text-sky-900">{n.title}</span>
-                          <span className="text-[10px] text-slate-400">{n.time}</span>
-                        </div>
-                        <p className="text-slate-600 leading-relaxed">{n.message}</p>
-                      </div>
-                    ))
-                  )}
-                </div>
-
-                {isStudent && (
-                  <div className="px-4 pt-2 border-t border-slate-100 flex justify-between items-center bg-slate-50/50 rounded-b-2xl">
-                    <button
-                      onClick={() => {
-                        setShowNotifDropdown(false);
-                        onOpenReminderModal();
-                      }}
-                      className="text-xs text-sky-800 font-bold hover:underline flex items-center gap-1.5 py-1"
-                    >
-                      <Clock className="w-3.5 h-3.5 text-sky-700" /> Atur Pengingat Harian
-                    </button>
-                  </div>
-                )}
-              </div>
-            )}
           </div>
 
           {/* Prominent Red Emergency Button "N-Report" in Header (Student View only) */}
@@ -236,15 +182,17 @@ export const Header: React.FC<HeaderProps> = ({
                       ? `NISN ${(currentUser as any)?.nisn || '0082345679'} • Duta`
                       : isStudent
                         ? `Kelas ${(currentUser as any)?.className || '8B'} • NISN ${(currentUser as any)?.nisn || '0082341234'}`
-                        : currentUser?.roleTitle || 'Pengguna NABIS'
+                        : currentUser && 'roleTitle' in currentUser
+                          ? currentUser.roleTitle
+                          : 'Pengguna NABIS'
                   }
                 </p>
               </div>
             </button>
 
-            {/* Profile Menu Dropdown */}
+            {/* Profile Menu Dropdown — tetap dropdown biasa, tapi fixed width */}
             {showProfileMenu && (
-              <div className="absolute top-full left-2 right-2 sm:left-auto sm:right-0 right-0 mt-2 w-auto sm:w-64 bg-white rounded-2xl shadow-xl border border-slate-200 py-3 z-50 animate-in fade-in zoom-in-95 duration-150 max-w-xs">
+              <div className="absolute top-full right-0 mt-2 w-[280px] max-w-[calc(100vw-2rem)] bg-white rounded-2xl shadow-xl border border-slate-200 py-3 z-50 animate-in fade-in zoom-in-95 duration-150">
                 <div className="px-4 pb-3 border-b border-slate-100">
                   <p className="text-xs font-bold text-slate-900">{currentUser?.name}</p>
                   <p className="text-[11px] text-slate-500">{currentUser?.schoolName || 'MAS Milbos Bogor'}</p>
@@ -274,8 +222,136 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
 
       </div>
+
+      {/* Notification Panel — di-render lewat portal ke document.body, jadi TIDAK terpengaruh
+          sama sekali oleh lebar/posisi parent manapun di header. Ini yang fix bug strip tipis. */}
+      {showNotifDropdown && createPortal(
+        <NotificationPanel
+          notifications={notifications}
+          unreadCount={unreadCount}
+          onClose={() => setShowNotifDropdown(false)}
+          onMarkAllRead={onMarkAllRead}
+          isStudent={isStudent}
+          onOpenReminderModal={onOpenReminderModal}
+        />,
+        document.body
+      )}
     </header>
   );
 };
 
+/* ---------------------------------------------------------------------------
+   NotificationPanel
+   - Mobile: bottom sheet, muncul dari bawah, lebar penuh (dengan margin aman)
+   - Desktop (sm ke atas): panel mengambang di kanan atas, lebar fixed 384px
+   - Backdrop klik luar buat nutup
+--------------------------------------------------------------------------- */
+interface NotificationPanelProps {
+  notifications: NotificationItem[];
+  unreadCount: number;
+  onClose: () => void;
+  onMarkAllRead: () => void;
+  isStudent: boolean;
+  onOpenReminderModal: () => void;
+}
 
+const NotificationPanel: React.FC<NotificationPanelProps> = ({
+  notifications,
+  unreadCount,
+  onClose,
+  onMarkAllRead,
+  isStudent,
+  onOpenReminderModal,
+}) => {
+  return (
+    <div className="fixed inset-0 z-[100]">
+      {/* Backdrop */}
+      <div
+        className="absolute inset-0 bg-black/40 animate-in fade-in duration-150"
+        onClick={onClose}
+      />
+
+      {/* Panel: bottom sheet di mobile, floating card di desktop */}
+      <div
+        className="
+          absolute left-0 right-0 bottom-0 mx-auto
+          w-full sm:w-96
+          max-h-[85vh] sm:max-h-[32rem]
+          sm:top-20 sm:bottom-auto sm:right-4 sm:left-auto
+          bg-white shadow-2xl border border-slate-200
+          rounded-t-3xl sm:rounded-2xl
+          flex flex-col
+          animate-in slide-in-from-bottom sm:zoom-in-95 sm:slide-in-from-top-2 duration-200
+          pb-[env(safe-area-inset-bottom,0px)]
+        "
+      >
+        {/* Handle bar khusus mobile */}
+        <div className="sm:hidden pt-2.5 pb-1 flex justify-center shrink-0">
+          <div className="w-10 h-1.5 rounded-full bg-slate-300" />
+        </div>
+
+        {/* Header panel */}
+        <div className="px-4 py-3 border-b border-slate-100 flex items-center justify-between shrink-0">
+          <div className="flex items-center gap-2">
+            <Bell className="w-4 h-4 text-sky-800" />
+            <h3 className="font-bold text-slate-800 text-sm">Notifikasi &amp; Pembaruan</h3>
+          </div>
+          <div className="flex items-center gap-2">
+            {unreadCount > 0 && (
+              <button
+                onClick={onMarkAllRead}
+                className="text-xs text-sky-800 hover:text-sky-950 font-bold flex items-center gap-1 px-2 py-1"
+              >
+                <CheckCircle2 className="w-3.5 h-3.5 shrink-0" /> Tandai Dibaca
+              </button>
+            )}
+            <button
+              onClick={onClose}
+              className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-500"
+              aria-label="Tutup"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+
+        {/* List notifikasi */}
+        <div className="flex-1 overflow-y-auto ios-touch-scroll divide-y divide-slate-100">
+          {notifications.length === 0 ? (
+            <p className="text-center py-6 text-xs text-slate-400">Belum ada notifikasi baru</p>
+          ) : (
+            notifications.map((n) => (
+              <div
+                key={n.id}
+                className={`p-3.5 text-xs transition-colors hover:bg-slate-50 ${
+                  !n.read ? 'bg-sky-50/60 font-medium' : 'bg-white'
+                }`}
+              >
+                <div className="flex justify-between items-start mb-1 gap-2">
+                  <span className="font-bold text-sky-900">{n.title}</span>
+                  <span className="text-[10px] text-slate-400 shrink-0">{n.time}</span>
+                </div>
+                <p className="text-slate-600 leading-relaxed">{n.message}</p>
+              </div>
+            ))
+          )}
+        </div>
+
+        {/* Footer: pengingat harian (khusus siswa) */}
+        {isStudent && (
+          <div className="px-4 py-2.5 border-t border-slate-100 bg-slate-50/50 rounded-b-3xl sm:rounded-b-2xl shrink-0">
+            <button
+              onClick={() => {
+                onClose();
+                onOpenReminderModal();
+              }}
+              className="text-xs text-sky-800 font-bold hover:underline flex items-center gap-1.5 py-1"
+            >
+              <Clock className="w-3.5 h-3.5 text-sky-700" /> Atur Pengingat Harian
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};

@@ -381,16 +381,16 @@ export default function App() {
       
       {/* FLOATING LIVE NOTIFICATION TOAST */}
       {activeToast && (
-        <div className="fixed top-[calc(env(safe-area-inset-top,0px)+1rem)] right-4 z-50 max-w-sm w-full bg-white rounded-2xl border-2 border-sky-400 shadow-2xl p-4 flex items-start gap-3 animate-in slide-in-from-top duration-300">
+        <div className="fixed top-[calc(env(safe-area-inset-top,0px)+0.75rem)] right-3 z-50 max-w-xs w-full bg-white rounded-2xl border border-sky-200 shadow-2xl p-3 flex items-start gap-2 animate-in slide-in-from-top duration-300">
           <div className="p-2 rounded-xl bg-sky-900 text-white shadow-xs">
-            <BellRing className="w-5 h-5 animate-bounce" />
+            <BellRing className="w-4 h-4 animate-bounce" />
           </div>
-          <div className="flex-1">
-            <div className="flex items-center justify-between">
-              <p className="font-extrabold text-xs text-sky-950">{activeToast.title}</p>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-start justify-between gap-2">
+              <p className="font-bold text-[11px] text-sky-950">{activeToast.title}</p>
               <span className="text-[10px] text-slate-400 font-semibold">{activeToast.time}</span>
             </div>
-            <p className="text-xs text-slate-600 mt-1 leading-relaxed">{activeToast.msg}</p>
+            <p className="text-[11px] text-slate-600 mt-1 leading-snug">{activeToast.msg}</p>
           </div>
           <button
             onClick={() => setActiveToast(null)}
