@@ -13,6 +13,7 @@ import { TeacherPortalView } from './components/TeacherPortalView';
 import { GovernmentPortalView } from './components/GovernmentPortalView';
 import { AiCounselingModal } from './components/AiCounselingModal';
 import { CaseTrackingView } from './components/CaseTrackingView';
+import { NRecoverSection } from './components/NRecoverSection';
 
 import {
   MOCK_ARTICLES,
@@ -22,7 +23,7 @@ import {
 } from './data/mockData';
 
 import { Article, MoodLevel, MoodCause, MoodLog, IncidentReport, NotificationItem, ReminderSettings, AppUser, UserStudent, UserTeacher } from './types';
-import { BellRing, Shield, HeartHandshake, X, LayoutDashboard, Brain, Gamepad2, Bot, Users, Building, Building2, BarChart2, ShieldCheck, FileText } from 'lucide-react';
+import { BellRing, Shield, HeartHandshake, X, LayoutDashboard, Brain, Gamepad2, Bot, Users, Building, Building2, BarChart2, ShieldCheck, FileText, Star } from 'lucide-react';
 import { NabisLogoIcon } from './components/NabisLogo';
 
 export default function App() {
@@ -204,9 +205,8 @@ export default function App() {
     );
   }
 
-  // PORTAL UNTUK PERAN TEKS / ROLE LAINNYA
-  // 1. TEACHER PORTAL
-  if (currentUser.role === 'teacher') {
+  // 1. TEACHER & AMBASSADOR PORTAL (same access rights)
+  if (currentUser.role === 'teacher' || currentUser.role === 'ambassador') {
     return (
       <div className="min-h-screen bg-slate-50 font-sans text-slate-800 antialiased flex flex-col justify-between">
         <Header
@@ -226,7 +226,7 @@ export default function App() {
           />
         </main>
         <footer className="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500 pb-[max(1.5rem,env(safe-area-inset-bottom,1rem))]">
-          <p className="font-bold text-sky-900">• NABIS — Portal Konselor Guru BK • MAS Milbos Bogor</p>
+          <p className="font-bold text-sky-900">• NABIS — {currentUser.role === 'ambassador' ? 'Portal Roots Ambassador' : 'Portal Konselor Guru BK'} • MAS Milbos Bogor</p>
         </footer>
       </div>
     );
@@ -452,6 +452,10 @@ export default function App() {
               <Gamepad2 className="w-4 h-4 shrink-0" />
               <span>N-Play</span>
             </button>
+            <div className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-amber-50 border border-amber-200 text-amber-800 min-h-[44px]">
+              <Star className="w-4 h-4 text-amber-600 shrink-0" />
+              <span className="whitespace-nowrap">N-Point: <span className="font-black">650</span></span>
+            </div>
           </div>
 
           <div className="flex items-center gap-2">
@@ -482,6 +486,9 @@ export default function App() {
               onSelectArticle={(article) => setSelectedArticle(article)}
               onOpenKnowledgeCheck={() => setCurrentView('knowledge')}
             />
+
+            {/* N-RECOVER RECOVERY BOX */}
+            <NRecoverSection />
 
             {/* DAILY MOOD CHECK (5 Horizontal Card Buttons) */}
             <DailyMoodCheck

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Brain, Gamepad2, ShieldAlert, ArrowRight, Lock, Trophy, BookMarked, MessageSquarePlus } from 'lucide-react';
+import { Brain, Gamepad2, ShieldAlert, ArrowRight, Lock, Trophy, BookMarked, MessageSquarePlus, Star, Award } from 'lucide-react';
 
 interface FeatureGridProps {
   onOpenKnowledgeCheck: () => void;
@@ -28,7 +28,7 @@ export const FeatureGrid: React.FC<FeatureGridProps> = ({
       </div>
 
       {/* FEATURE GRID LAYOUT */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         
         {/* CARD 1: KNOWLEDGE CHECK */}
         <div
@@ -116,7 +116,57 @@ export const FeatureGrid: React.FC<FeatureGridProps> = ({
           </div>
         </div>
 
-        {/* CARD 3: TOMBOL MERAH MENONJOL "N-REPORT" */}
+        {/* CARD 3: N-POINT GAMIFICATION */}
+        <div className="group cursor-pointer bg-white rounded-3xl p-6 border-2 border-amber-100 hover:border-amber-400 shadow-xl shadow-amber-900/5 hover:shadow-amber-500/10 transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+          {/* Subtle Accent Glow */}
+          <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full bg-amber-100 blur-2xl group-hover:bg-amber-200 transition-colors pointer-events-none"></div>
+
+          <div>
+            <div className="flex items-center justify-between mb-4">
+              <div className="w-14 h-14 rounded-2xl bg-amber-50 border border-amber-200 text-amber-700 flex items-center justify-center shadow-inner group-hover:scale-110 group-hover:bg-amber-500 group-hover:text-white transition-all">
+                <Star className="w-7 h-7" />
+              </div>
+              <span className="px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-extrabold border border-amber-200">
+                Gamifikasi
+              </span>
+            </div>
+
+            <h3 className="text-lg font-bold text-sky-950 group-hover:text-amber-700 transition-colors">
+              N-Point
+            </h3>
+            <p className="text-xs text-slate-600 mt-2 leading-relaxed">
+              Kumpulkan poin dari perilaku positif dan keterlibatan aktif. Raih reward atau dapatkan pembinaan jika poin di bawah KKM (500).
+            </p>
+
+            <div className="mt-4 pt-3 border-t border-slate-100 space-y-2 text-[11px] font-semibold text-slate-500">
+              <div className="flex items-center gap-4">
+                <span className="flex items-center gap-1 text-emerald-600">
+                  <Award className="w-3.5 h-3.5" /> Reward ≥ 500 Poin
+                </span>
+                <span className="flex items-center gap-1 text-red-600">
+                  <Lock className="w-3.5 h-3.5" /> Pembinaan &lt; 500 Poin
+                </span>
+              </div>
+              <div className="w-full bg-slate-200 rounded-full h-2">
+                <div className="bg-gradient-to-r from-red-400 via-amber-400 to-emerald-400 h-2 rounded-full" style={{ width: '65%' }}></div>
+              </div>
+              <div className="flex justify-between text-[10px]">
+                <span className="text-red-500">0</span>
+                <span className="text-amber-600 font-bold">KKM 500</span>
+                <span className="text-emerald-500">1000</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-6">
+            <button className="w-full py-3 px-4 rounded-xl bg-amber-50 group-hover:bg-amber-500 text-amber-800 group-hover:text-white font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-sm">
+              <span>Lihat Poin & Progres</span>
+              <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
+        </div>
+
+        {/* CARD 4: TOMBOL MERAH MENONJOL "N-HELP" */}
         <div
           onClick={onOpenLaporModal}
           className="group cursor-pointer bg-gradient-to-br from-red-600 via-red-600 to-rose-700 rounded-3xl p-6 border-2 border-red-500 hover:border-red-300 shadow-2xl shadow-red-600/30 hover:shadow-red-600/50 transition-all duration-300 flex flex-col justify-between transform hover:-translate-y-1 relative overflow-hidden ring-4 ring-red-100"

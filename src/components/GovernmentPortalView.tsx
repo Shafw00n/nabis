@@ -50,7 +50,7 @@ export const GovernmentPortalView: React.FC = () => {
             Portal Pemantauan Pemerintah
           </span>
         </div>
-        <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">Dashboard Anti-Bullying Nasional</h2>
+        <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">N-Insight (Dashboard Anti-Bullying Nasional)</h2>
         <p className="text-purple-200 text-sm mt-1">Monitor real-time kasus perundungan di seluruh sekolah terintegrasi</p>
       </div>
 

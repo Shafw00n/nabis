@@ -130,10 +130,10 @@ export const TeacherPortalView: React.FC<TeacherPortalViewProps> = ({
               <span>Portal Terbatas • Bimbingan Konseling (BK)</span>
             </div>
             <h1 className="text-2xl sm:text-3xl font-black tracking-tight">
-              N-Insight: {currentTeacher.name}
+              Manajemen Penanganan: {currentTeacher.name}
             </h1>
             <p className="text-sky-200 text-xs sm:text-sm">
-              {currentTeacher.roleTitle} • NIP: {currentTeacher.nip} • {currentTeacher.schoolName}
+              {currentTeacher.roleTitle} • {(currentTeacher as any).nip ? `NIP: ${(currentTeacher as any).nip}` : `NISN: ${(currentTeacher as any).nisn || '-'}`} • {currentTeacher.schoolName}
             </p>
           </div>
 
@@ -183,7 +183,7 @@ export const TeacherPortalView: React.FC<TeacherPortalViewProps> = ({
             }`}
           >
             <BarChart2 className="w-4 h-4" />
-            <span>Statistik & Grafik Kasus</span>
+            <span>N-Insight (Statistik & Grafik Kasus)</span>
           </button>
 
           <button
@@ -195,7 +195,7 @@ export const TeacherPortalView: React.FC<TeacherPortalViewProps> = ({
             }`}
           >
             <Users className="w-4 h-4" />
-            <span>Pemantauan Mood Rapot Siswa</span>
+            <span>N-Insight (Pemantauan Mood Rapot Siswa)</span>
           </button>
         </div>
       </div>
