@@ -116,7 +116,7 @@ export default function App() {
 
     const reportNotif: NotificationItem = {
       id: `notif-${Date.now()}`,
-      title: 'Laporan N-Report Terkirim',
+      title: 'Laporan N-Help Terkirim',
       message: `Nomor Tiket #${ticket} telah tercatat. Tim Konselor BK segera meninjau laporanmu.`,
       time: 'Baru Saja',
       type: 'report_update',
@@ -275,7 +275,7 @@ export default function App() {
                 onClick={() => setIsLaporModalOpen(true)}
                 className="w-full py-3 bg-red-700 hover:bg-red-800 text-white font-bold text-xs rounded-xl transition-colors mt-1 min-h-[44px]"
               >
-                Buat N-Report Untuk Anak
+                Buat N-Help Untuk Anak
             </button>
             <button
               onClick={() => setCurrentView('tracking')}
@@ -468,7 +468,7 @@ export default function App() {
               className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-red-700 hover:bg-red-800 text-white font-bold text-xs transition-colors min-h-[44px]"
             >
               <Shield className="w-3.5 h-3.5 text-red-200" />
-              <span>'N-Report'</span>
+              <span>'N-Help'</span>
             </button>
           </div>
         </div>

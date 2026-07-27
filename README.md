@@ -26,7 +26,7 @@ Alat analitik untuk konselor dan guru.
 
 ### 3. Kuratif (Penanganan)
 Sistem pelaporan dan pemulihan.
-*   **N-Report:** Saluran pelaporan insiden perundungan yang aman.
+*   **N-Help:** Saluran pelaporan insiden perundungan yang aman.
 *   **Respond Triage:** Sistem klasifikasi prioritas penanganan laporan.
 *   **Recover (Sesi Konseling):** Fasilitas intervensi dan penjadwalan konseling yang terenkripsi dan transparan.
 

@@ -127,7 +127,7 @@ export const LaporAkuModal: React.FC<LaporAkuModalProps> = ({
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="text-xl font-extrabold tracking-tight">N-Report NABIS</h3>
+                <h3 className="text-xl font-extrabold tracking-tight">N-Help NABIS</h3>
                 <span className="px-2 py-0.5 text-[10px] bg-white text-red-700 font-black rounded-md uppercase">
                   Aman & Rahasia
                 </span>
@@ -378,7 +378,7 @@ export const LaporAkuModal: React.FC<LaporAkuModalProps> = ({
                       className="w-full py-3.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-extrabold text-sm uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-red-500/20 transition-all"
                     >
                       <Send className="w-4 h-4" />
-                      <span>Kirim Laporan Rahasia "N-Report"</span>
+                      <span>Kirim Laporan Rahasia "N-Help"</span>
                     </button>
                   </div>
 

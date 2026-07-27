@@ -143,14 +143,14 @@ export const Header: React.FC<HeaderProps> = ({
             </button>
           </div>
 
-          {/* Prominent Red Emergency Button "N-Report" in Header (Student View only) */}
+          {/* Prominent Red Emergency Button "N-Help" in Header (Student View only) */}
           {isStudent && (
             <button
               onClick={onOpenLaporModal}
               className="flex items-center gap-1.5 px-2.5 py-1.5 sm:px-4 sm:py-2.5 rounded-xl bg-red-700 hover:bg-red-800 text-white font-bold text-xs sm:text-sm shadow-xs transition-all transform hover:-translate-y-0.5 border border-red-600"
             >
               <ShieldAlert className="w-4 h-4 sm:w-5 sm:h-5" />
-              <span className="tracking-wide uppercase font-black">N-Report</span>
+              <span className="tracking-wide uppercase font-black">N-Help</span>
             </button>
           )}
 

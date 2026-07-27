@@ -265,7 +265,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLogin }) => {
             </div>
             <div className="p-4 rounded-2xl bg-sky-950/70 backdrop-blur-md border border-sky-700/60 shadow-lg space-y-1.5 hover:border-cyan-400/80 transition-colors">
               <h4 className="text-sm font-extrabold text-cyan-300">• Kuratif</h4>
-              <p className="text-xs text-sky-100 leading-normal">N-Report, Respond Triage, &amp; Recover Sesi Konseling.</p>
+              <p className="text-xs text-sky-100 leading-normal">N-Help, Respond Triage, &amp; Recover Sesi Konseling.</p>
             </div>
           </div>
         </div>

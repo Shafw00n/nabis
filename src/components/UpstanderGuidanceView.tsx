@@ -58,7 +58,7 @@ export const UpstanderGuidanceView: React.FC<UpstanderGuidanceViewProps> = ({
 • Buat alasan wajar untuk menyapa korban, contoh: "Eh, kamu dipanggil guru di perpustakaan sekarang" atau "Ayo gabung kelompok kita."
 
 3. Langkah 3 - Laporkan ke Pendamping Resmi:
-• Buka tombol N-Report di NABIS untuk mengirim tiket rahasia ke Tim Guru BK sekolah.
+• Buka tombol N-Help di NABIS untuk mengirim tiket rahasia ke Tim Guru BK sekolah.
 
 4. Langkah 4 - Dampingi Korban:
 • Berikan motivasi dan tanyakan keadaannya secara personal setelah situasi mereda.`);
@@ -117,7 +117,7 @@ export const UpstanderGuidanceView: React.FC<UpstanderGuidanceViewProps> = ({
             <span className="text-xs font-bold text-indigo-900 uppercase tracking-wider">3. Delegate</span>
             <h4 className="text-xs font-bold text-slate-800">Minta Bantuan</h4>
             <p className="text-[11px] text-slate-600 leading-normal">
-              • Hubungi Guru BK, Wali Kelas, atau gunakan tombol N-Report.
+              • Hubungi Guru BK, Wali Kelas, atau gunakan tombol N-Help.
             </p>
           </div>
 

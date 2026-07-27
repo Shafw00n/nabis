@@ -1,6 +1,6 @@
 {
   "name": "NABIS - National Anti-Bullying Intelligence System",
-  "description": "Aplikasi Dashboard Siswa Anti-Bullying NABIS (National Anti-Bullying Intelligence System) dengan Daily Mood Check, N-Report (SOS), Knowledge Check, Games Edukasi, dan Sistem Pengingat Notifikasi Harian.",
+  "description": "Aplikasi Dashboard Siswa Anti-Bullying NABIS (National Anti-Bullying Intelligence System) dengan Daily Mood Check, N-Help (SOS), Knowledge Check, Games Edukasi, dan Sistem Pengingat Notifikasi Harian.",
   "requestFramePermissions": ["notifications"],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
