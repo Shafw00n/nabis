@@ -168,7 +168,7 @@ export const TeacherPortalView: React.FC<TeacherPortalViewProps> = ({
             }`}
           >
             <FileText className="w-4 h-4" />
-            <span>Manajemen Laporan N-Help</span>
+            <span>Manajemen Laporan N-Respond</span>
             <span className="ml-1 px-1.5 py-0.2 rounded bg-sky-100 text-sky-900 text-[10px] font-bold">
               {reports.length}
             </span>
